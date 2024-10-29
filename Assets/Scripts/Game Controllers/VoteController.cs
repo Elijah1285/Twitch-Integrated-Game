@@ -9,6 +9,9 @@ public class VoteController : MonoBehaviour
     [SerializeField] float vote_timer;
     [SerializeField] TextMeshProUGUI time_left_text;
 
+    [SerializeField] TextMeshProUGUI ice_cavern_vote_amount_text;
+    [SerializeField] TextMeshProUGUI underworld_vote_amount_text;
+
     int ice_cavern_votes = 0;
     int underworld_votes = 0;
 
@@ -45,12 +48,16 @@ public class VoteController : MonoBehaviour
             case VoteOption.ICE_CAVERN:
                 {
                     ice_cavern_votes++;
+
+                    ice_cavern_vote_amount_text.text = ice_cavern_votes.ToString();
                     break;
                 }
 
             case VoteOption.UNDERWORLD:
                 {
                     underworld_votes++;
+
+                    underworld_vote_amount_text.text = underworld_votes.ToString();
                     break;
                 }
         }
