@@ -72,9 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9954cbd90a25442b7f2f81d91e5ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fall_acceleration: 0
-  terminal_velocity: 0
-  damage: 0
+  fall_acceleration: 10
+  terminal_velocity: 100
+  damage: 5
 --- !u!1 &813055530973745774
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 959558057369076023}
   - component: {fileID: 8456103742671156436}
+  - component: {fileID: 3661753533046627608}
   m_Layer: 0
   m_Name: fall_trigger
   m_TagString: Untagged
@@ -319,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 2155095070540570507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -340,14 +341,27 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 1
+  m_Height: 30
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3661753533046627608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155095070540570507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa7821400b4fe24788fc1d85383bad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  falling_icicle: {fileID: 5041549504629209899}
 --- !u!1 &6245754643710947184
 GameObject:
   m_ObjectHideFlags: 0

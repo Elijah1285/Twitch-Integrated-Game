@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         //move the projectile
         transform.Translate(vector);
 
-        //update lifetime
+        //update and check lifetime
         lifetime -= Time.deltaTime;
 
         if (lifetime <= 0)

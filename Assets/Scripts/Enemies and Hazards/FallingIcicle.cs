@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FallingIcicle : MonoBehaviour
 {
+    float lifetime = 5.0f;
+
     bool falling = false;
     float fall_velocity = 0.0f;
 
@@ -16,6 +18,7 @@ public class FallingIcicle : MonoBehaviour
     {
         if (falling)
         {
+            //fall
             if (fall_velocity < terminal_velocity)
             {
                 fall_velocity -= fall_acceleration * Time.deltaTime;
@@ -26,7 +29,17 @@ public class FallingIcicle : MonoBehaviour
                 }
             }
 
-            transform.Translate(new Vector3(0.0f, fall_velocity, 0.0f));
+            Vector3 movement_vector = new Vector3(0.0f, fall_velocity, 0.0f) * Time.deltaTime;
+
+            transform.Translate(movement_vector);
+
+            //update and check lifetime
+            lifetime -= Time.deltaTime;
+
+            if (lifetime <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -36,6 +49,10 @@ public class FallingIcicle : MonoBehaviour
         {
             other.GetComponent<PlayerHealth>().takeDamage(damage);
 
+            Destroy(gameObject);
+        }
+        else if (other.tag == "Ground")
+        {
             Destroy(gameObject);
         }
     }
