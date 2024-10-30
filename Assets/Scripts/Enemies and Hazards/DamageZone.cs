@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lava : MonoBehaviour
+public class DamageZone : MonoBehaviour
 {
     float damage_timer;
     [SerializeField] float time_to_damage;
