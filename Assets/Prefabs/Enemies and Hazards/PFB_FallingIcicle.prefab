@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9954cbd90a25442b7f2f81d91e5ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fall_acceleration: 10
+  fall_acceleration: 30
   terminal_velocity: 100
   damage: 5
 --- !u!1 &813055530973745774
@@ -345,7 +345,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 10
   m_Height: 30
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
