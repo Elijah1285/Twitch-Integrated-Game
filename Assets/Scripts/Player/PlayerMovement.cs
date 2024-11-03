@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float movement_speed = 5.0f;
-    float rotation_speed = 1000.0f;
+    [SerializeField] float movement_speed;
+    [SerializeField] float rotation_speed;
+    [SerializeField] float jump_height;
+    [SerializeField] float gravity;
+
+    Vector3 velocity;
 
     CharacterController character_controller;
 
@@ -22,27 +26,41 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        // get movement inputs
+        //get movement inputs
         float horizontal_input = Input.GetAxis("Horizontal");
         float vertical_input = Input.GetAxis("Vertical");
 
-        // apply movement inputs
-        // calculate movement magnitude
-        Vector3 movement = new Vector3(horizontal_input, 0, vertical_input) * Time.deltaTime * movement_speed;
+        //apply movement inputs
+        //calculate movement magnitude
+        velocity.x = horizontal_input * movement_speed * Time.deltaTime;
+        velocity.z = vertical_input * movement_speed * Time.deltaTime;
 
-        // calculate movement direction
-        movement = transform.TransformDirection(movement);
+        //check jump input
+        if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
+        {
+            //work out y velocity based on target jump height
+            velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
+        }
 
-        // apply calculated movement
-        character_controller.Move(movement);
+        //apply gravity
+        if (!character_controller.isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        //calculate movement direction
+        velocity = transform.TransformDirection(velocity);
+
+        //apply calculated movement
+        character_controller.Move(velocity * Time.deltaTime);
     }
 
     void rotatePlayer()
     {
-        // get rotation input
+        //get rotation input
         float rotation_input = Input.GetAxis("Mouse X");
 
-        // apply rotation input
+        //apply rotation input
         Quaternion target_rotation = transform.rotation * Quaternion.Euler(0, rotation_input * rotation_speed * Time.deltaTime, 0);
 
         //apply calculated rotation

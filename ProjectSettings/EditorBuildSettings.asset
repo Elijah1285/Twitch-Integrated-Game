@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Over.unity
     guid: 40aad38a6b6cbb141958651eb497bebc
   - enabled: 1
-    path: Assets/Scenes/Twitch Integration.unity
+    path: Assets/Scenes/Voting Screen.unity
     guid: 3b0a80ec1976e0549844f203c907ec4a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
