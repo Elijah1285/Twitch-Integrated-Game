@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    int attack_damage;
+    [SerializeField] int attack_damage;
+
+
 }
