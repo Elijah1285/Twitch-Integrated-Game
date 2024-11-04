@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     float attack_timer = 0.0f;
+    List<GameObject> enemies_in_attack_box = new List<GameObject>();
 
     [SerializeField] float time_for_attack;
+    [SerializeField] float attack_range;
     [SerializeField] int attack_damage;
-
-    EnemyHealth target_enemy;
 
     void Start()
     {
@@ -36,29 +36,30 @@ public class PlayerAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.tag);
-        //if (other.tag == "Enemy" && !enemies_in_attack_box.Contains(other.gameObject))
-        //{
-        //    enemies_in_attack_box.Add(other.gameObject);
-        //    Debug.Log("added");
-        //}
+        if (other.tag == "Enemy" && !enemies_in_attack_box.Contains(other.gameObject))
+        {
+            enemies_in_attack_box.Add(other.gameObject);
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        //if (other.tag == "Enemy" && enemies_in_attack_box.Contains(other.gameObject))
-        //{
-        //    enemies_in_attack_box.Remove(other.gameObject);
-        //    Debug.Log("removed");
-        //}
+        if (other.tag == "Enemy" && enemies_in_attack_box.Contains(other.gameObject))
+        {
+            enemies_in_attack_box.Remove(other.gameObject);
+        }
     }
 
     void attack()
     {
-        //foreach(GameObject enemy in enemies_in_attack_box)
-        //{
-        //    enemy.GetComponent<EnemyHealth>().takeDamage(attack_damage);
-        //    Debug.Log("a");
-        //}
+        foreach (GameObject enemy in enemies_in_attack_box)
+        {
+            enemy.GetComponent<EnemyHealth>().takeDamage(attack_damage);
+        }
+    }
+
+    public void removeEnemy(GameObject enemy)
+    {
+        enemies_in_attack_box.Remove(enemy);
     }
 }

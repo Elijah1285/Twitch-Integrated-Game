@@ -1180,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5497238670032724754, guid: 007a91df04e660545823bb013770dd34, type: 3}
       propertyPath: hitpoints
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5696440409896753939, guid: 007a91df04e660545823bb013770dd34, type: 3}
       propertyPath: projectile
