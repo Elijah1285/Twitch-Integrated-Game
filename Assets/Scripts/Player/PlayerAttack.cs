@@ -36,29 +36,29 @@ public class PlayerAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
-        if (other.tag == "Enemy" && !enemies_in_attack_box.Contains(other.gameObject))
-        {
-            enemies_in_attack_box.Add(other.gameObject);
-            Debug.Log("added");
-        }
+        //Debug.Log(other.tag);
+        //if (other.tag == "Enemy" && !enemies_in_attack_box.Contains(other.gameObject))
+        //{
+        //    enemies_in_attack_box.Add(other.gameObject);
+        //    Debug.Log("added");
+        //}
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy" && enemies_in_attack_box.Contains(other.gameObject))
-        {
-            enemies_in_attack_box.Remove(other.gameObject);
-            Debug.Log("removed");
-        }
+        //if (other.tag == "Enemy" && enemies_in_attack_box.Contains(other.gameObject))
+        //{
+        //    enemies_in_attack_box.Remove(other.gameObject);
+        //    Debug.Log("removed");
+        //}
     }
 
     void attack()
     {
-        foreach(GameObject enemy in enemies_in_attack_box)
-        {
-            enemy.GetComponent<EnemyHealth>().takeDamage(attack_damage);
-            Debug.Log("a");
-        }
+        //foreach(GameObject enemy in enemies_in_attack_box)
+        //{
+        //    enemy.GetComponent<EnemyHealth>().takeDamage(attack_damage);
+        //    Debug.Log("a");
+        //}
     }
 }
