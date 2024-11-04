@@ -52,9 +52,9 @@ public class PlayerAttack : MonoBehaviour
 
     void attack()
     {
-        foreach (GameObject enemy in enemies_in_attack_box)
+        for (int i = 0; i < enemies_in_attack_box.Count; i++)
         {
-            enemy.GetComponent<EnemyHealth>().takeDamage(attack_damage);
+            enemies_in_attack_box[i].GetComponent<EnemyHealth>().takeDamage(attack_damage);
         }
     }
 

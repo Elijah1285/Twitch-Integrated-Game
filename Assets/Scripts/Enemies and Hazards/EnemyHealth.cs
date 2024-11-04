@@ -12,6 +12,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (hitpoints < 0)
         {
+            PlayerAttack player_attack = FindObjectOfType<PlayerAttack>();
+            player_attack.removeEnemy(this.gameObject);
 
             Destroy(gameObject);
         }
