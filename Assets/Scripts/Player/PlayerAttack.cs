@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float attack_range;
     [SerializeField] int attack_damage;
 
+    [SerializeField] SwordSwing sword_swing;
+
     void Start()
     {
         attack_timer = time_for_attack;
@@ -56,6 +58,8 @@ public class PlayerAttack : MonoBehaviour
         {
             enemies_in_attack_box[i].GetComponent<EnemyHealth>().takeDamage(attack_damage);
         }
+
+        sword_swing.swing();
     }
 
     public void removeEnemy(GameObject enemy)

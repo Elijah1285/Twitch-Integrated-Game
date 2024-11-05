@@ -10,9 +10,9 @@ public class EnemyHealth : MonoBehaviour
     {
         hitpoints -= damage;
 
-        if (hitpoints < 0)
+        if (hitpoints <= 0)
         {
-            PlayerAttack player_attack = FindObjectOfType<PlayerAttack>();
+            PlayerAttack player_attack = FindFirstObjectByType<PlayerAttack>();
             player_attack.removeEnemy(this.gameObject);
 
             Destroy(gameObject);
