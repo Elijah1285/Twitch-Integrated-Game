@@ -7,7 +7,7 @@ using TMPro;
 public class VoteController : MonoBehaviour
 {
     [SerializeField] float vote_timer;
-    [SerializeField] TextMeshProUGUI time_left_text;
+    [SerializeField] TextMeshProUGUI time_left_amount_text;
 
     [SerializeField] TextMeshProUGUI ice_cavern_vote_amount_text;
     [SerializeField] TextMeshProUGUI underworld_vote_amount_text;
@@ -21,7 +21,7 @@ public class VoteController : MonoBehaviour
 
         int int_vote_timer = (int)vote_timer;
 
-        time_left_text.text = int_vote_timer.ToString() + " seconds left";
+        time_left_amount_text.text = int_vote_timer.ToString();
 
         if (Input.GetKeyDown("1"))
         {
