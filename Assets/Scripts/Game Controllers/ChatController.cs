@@ -10,7 +10,9 @@ public class ChatController : MonoBehaviour
 
     public GameObject chat_panel;
     public GameObject text_object;
-    public TMP_InputField chat_box;
+    public TMP_InputField chat_input_box;
+
+    [SerializeField] ScrollRect chat_scroll_rect;
 
     [SerializeField] List<Message> message_list = new List<Message>();
 
@@ -21,19 +23,19 @@ public class ChatController : MonoBehaviour
 
     void Update()
     {
-        if (chat_box.text != "")
+        if (chat_input_box.text != "")
         {
             if (Input.GetButtonDown("Submit"))
             {
-                sendMessageToChat(chat_box.text);
-                chat_box.text = "";
+                sendMessageToChat(chat_input_box.text);
+                chat_input_box.text = "";
             }
         }
         else
         {
-            if (!chat_box.isFocused && Input.GetButtonDown("Submit"))
+            if (!chat_input_box.isFocused && Input.GetButtonDown("Submit"))
             {
-                chat_box.ActivateInputField();
+                chat_input_box.ActivateInputField();
             }
         }
     }
@@ -47,16 +49,14 @@ public class ChatController : MonoBehaviour
         }
 
         Message new_message = new Message();
-
         new_message.text = text;
-
         GameObject new_text = Instantiate(text_object, chat_panel.transform);
-
         new_message.text_object = new_text.GetComponent<TextMeshProUGUI>();
-
         new_message.text_object.text = new_message.text;
-
         message_list.Add(new_message);
+
+        Canvas.ForceUpdateCanvases();
+        chat_scroll_rect.verticalNormalizedPosition = 0.0f;
     }
 }
 
@@ -65,5 +65,10 @@ public class Message
 {
     public string text;
     public TextMeshProUGUI text_object;
+
+    public enum MessageType
+    {
+         
+    }
 }
 
