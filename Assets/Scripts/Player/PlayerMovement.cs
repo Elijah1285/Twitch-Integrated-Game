@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_height;
     [SerializeField] float gravity;
+    [SerializeField] Transform camera_transform;
 
     Vector3 velocity;
 
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movePlayer();
-        rotatePlayer();
+        rotatePlayerAndCamera();
     }
 
     void movePlayer()
@@ -55,15 +56,29 @@ public class PlayerMovement : MonoBehaviour
         character_controller.Move(velocity * Time.deltaTime);
     }
 
-    void rotatePlayer()
+    void rotatePlayerAndCamera()
     {
         //get rotation input
-        float rotation_input = Input.GetAxis("Mouse X");
+        float x_rotation_input = Input.GetAxis("Mouse X");
+        float y_rotation_input = Input.GetAxis("Mouse Y");
 
         //apply rotation input
-        Quaternion target_rotation = transform.rotation * Quaternion.Euler(0, rotation_input * rotation_speed * Time.deltaTime, 0);
+        Quaternion target_player_rotation = transform.rotation * Quaternion.Euler(0.0f, x_rotation_input * rotation_speed * Time.deltaTime, 0.0f);
+        Quaternion target_camera_rotation = camera_transform.localRotation * Quaternion.Euler(-y_rotation_input * rotation_speed * Time.deltaTime, 0.0f, 0.0f);
 
         //apply calculated rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, target_rotation, Time.deltaTime * rotation_speed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed);
+        camera_transform.localRotation = Quaternion.Slerp(camera_transform.localRotation, target_camera_rotation, Time.deltaTime * rotation_speed);
+
+        //if (camera_transform.localRotation.eulerAngles.x > 90.0f)
+        //{
+        //    camera_transform.localRotation = Quaternion.Euler(90.0f, camera_transform.localRotation.eulerAngles.y, camera_transform.localRotation.eulerAngles.z);
+        //}
+        //else if (camera_transform.localRotation.eulerAngles.x < -90.0f)
+        //{
+        //    camera_transform.localRotation = Quaternion.Euler(-90.0f, camera_transform.localRotation.eulerAngles.y, camera_transform.localRotation.eulerAngles.z);
+        //}
+
+        Debug.Log(camera_transform.localRotation.eulerAngles);
     }
 }
