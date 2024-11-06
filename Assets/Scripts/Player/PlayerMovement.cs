@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    float camera_pitch = 0.0f;
+
     [SerializeField] float movement_speed;
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_height;
@@ -64,21 +66,22 @@ public class PlayerMovement : MonoBehaviour
 
         //apply rotation input
         Quaternion target_player_rotation = transform.rotation * Quaternion.Euler(0.0f, x_rotation_input * rotation_speed * Time.deltaTime, 0.0f);
-        Quaternion target_camera_rotation = camera_transform.localRotation * Quaternion.Euler(-y_rotation_input * rotation_speed * Time.deltaTime, 0.0f, 0.0f);
+
+        float target_camera_pitch = camera_pitch + (-y_rotation_input * rotation_speed * Time.deltaTime);
+        camera_pitch = Mathf.Lerp(camera_pitch, target_camera_pitch, Time.deltaTime * rotation_speed);
+
+        if (camera_pitch > 90.0f)
+        {
+            camera_pitch = 90.0f;
+        }
+        else if (camera_pitch < -90.0f)
+        {
+            camera_pitch = -90.0f;
+        }
 
         //apply calculated rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed);
-        camera_transform.localRotation = Quaternion.Slerp(camera_transform.localRotation, target_camera_rotation, Time.deltaTime * rotation_speed);
-
-        //if (camera_transform.localRotation.eulerAngles.x > 90.0f)
-        //{
-        //    camera_transform.localRotation = Quaternion.Euler(90.0f, camera_transform.localRotation.eulerAngles.y, camera_transform.localRotation.eulerAngles.z);
-        //}
-        //else if (camera_transform.localRotation.eulerAngles.x < -90.0f)
-        //{
-        //    camera_transform.localRotation = Quaternion.Euler(-90.0f, camera_transform.localRotation.eulerAngles.y, camera_transform.localRotation.eulerAngles.z);
-        //}
-
-        Debug.Log(camera_transform.localRotation.eulerAngles);
+        
+        camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
 }
