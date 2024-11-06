@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7105538173685124330, guid: 66bd1710cc526aa48a7d3ca0ce3b6e49, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 82.999985
+      value: 82.99999
       objectReference: {fileID: 0}
     - target: {fileID: 7286207404313254322, guid: 66bd1710cc526aa48a7d3ca0ce3b6e49, type: 3}
       propertyPath: jump_force

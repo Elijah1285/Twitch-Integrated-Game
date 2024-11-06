@@ -9,7 +9,7 @@ public class EndPortal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene("Twitch Integration");
+            SceneManager.LoadScene("Voting Screen");
         }
     }
 }
