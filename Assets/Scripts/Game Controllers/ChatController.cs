@@ -10,6 +10,7 @@ public class ChatController : MonoBehaviour
 
     public GameObject chat_panel;
     public GameObject text_object;
+    public TMP_InputField chat_box;
 
     [SerializeField] List<Message> message_list = new List<Message>();
 
@@ -20,9 +21,20 @@ public class ChatController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        if (chat_box.text != "")
         {
-            sendMessageToChat("a");
+            if (Input.GetButtonDown("Submit"))
+            {
+                sendMessageToChat(chat_box.text);
+                chat_box.text = "";
+            }
+        }
+        else
+        {
+            if (!chat_box.isFocused && Input.GetButtonDown("Submit"))
+            {
+                chat_box.ActivateInputField();
+            }
         }
     }
 
