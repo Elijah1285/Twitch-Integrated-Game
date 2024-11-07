@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class StationaryShootingEnemy : MonoBehaviour
 {
+    bool active = false;
     float fire_timer;
+
+    [SerializeField] bool active_at_start;
     [SerializeField] float time_to_fire;
     [SerializeField] float firing_offset;
     [SerializeField] GameObject projectile;
@@ -13,17 +16,21 @@ public class StationaryShootingEnemy : MonoBehaviour
     void Start()
     {
         fire_timer = time_to_fire + firing_offset;
+        active = active_at_start;
     }
 
     void Update()
     {
-        fire_timer -= Time.deltaTime;
-
-        if (fire_timer <= 0)
+        if (active)
         {
-            fire();
+            fire_timer -= Time.deltaTime;
 
-            fire_timer = time_to_fire;
+            if (fire_timer <= 0)
+            {
+                fire();
+
+                fire_timer = time_to_fire;
+            }
         }
     }
 

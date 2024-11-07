@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572b849bff664de4f9369e83c67c457d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vote_timer: 20
+  vote_timer: 30
   time_left_amount_text: {fileID: 1990462955}
   ice_cavern_vote_amount_text: {fileID: 2017961068}
   underworld_vote_amount_text: {fileID: 198177847}
