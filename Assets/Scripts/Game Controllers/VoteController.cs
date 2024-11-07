@@ -27,9 +27,6 @@ public class VoteController : MonoBehaviour
         {
             endVote();
         }
-
-        
-
     }
 
     public void vote(VoteOption vote_option)
