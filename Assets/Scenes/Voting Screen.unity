@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: 2.4542542, y: -0.5}
+  m_SizeDelta: {x: -75.06888, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18864396
 MonoBehaviour:
@@ -206,8 +206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 17.487984, y: 0}
+  m_SizeDelta: {x: -26.232, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74982501
 MonoBehaviour:
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 53.171494, y: 0, z: 33.329117, w: 0}
+  m_margin: {x: -0.000022888184, y: 0, z: 26.794567, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1209,8 +1209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.25478363, y: 0}
+  m_SizeDelta: {x: -53.01967, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844796550
 MonoBehaviour:
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 19.030006, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.0000076293945, y: 0, z: -0.00013734408, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1498,6 +1498,7 @@ MonoBehaviour:
   text_object: {fileID: 8595224076079710440, guid: c90e52645c6533b498b270826fea246b, type: 3}
   chat_input_box: {fileID: 1107597203}
   chat_scroll_rect: {fileID: 1186815234}
+  vote_controller: {fileID: 775107769}
   message_list: []
 --- !u!1 &1001652705
 GameObject:

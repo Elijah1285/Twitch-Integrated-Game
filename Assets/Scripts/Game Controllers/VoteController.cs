@@ -23,15 +23,6 @@ public class VoteController : MonoBehaviour
 
         time_left_amount_text.text = int_vote_timer.ToString();
 
-        if (Input.GetKeyDown("1"))
-        {
-            vote(VoteOption.ICE_CAVERN);
-        }
-        else if (Input.GetKeyDown("2"))
-        {
-            vote(VoteOption.UNDERWORLD);
-        }
-
         if (vote_timer  <= 0)
         {
             endVote();

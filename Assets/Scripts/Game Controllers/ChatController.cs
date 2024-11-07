@@ -13,13 +13,9 @@ public class ChatController : MonoBehaviour
     public TMP_InputField chat_input_box;
 
     [SerializeField] ScrollRect chat_scroll_rect;
+    [SerializeField] VoteController vote_controller;
 
     [SerializeField] List<Message> message_list = new List<Message>();
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -42,12 +38,14 @@ public class ChatController : MonoBehaviour
 
     public void sendMessageToChat(string text)
     {
+        //check if exceeded max messages
         if (message_list.Count >= max_messages)
         {
             Destroy(message_list[0].text_object.gameObject);
             message_list.Remove(message_list[0]);
         }
 
+        //create and send new message
         Message new_message = new Message();
         new_message.text = text;
         GameObject new_text = Instantiate(text_object, chat_panel.transform);
@@ -55,6 +53,25 @@ public class ChatController : MonoBehaviour
         new_message.text_object.text = new_message.text;
         message_list.Add(new_message);
 
+        //check if message matches voting options
+        switch(new_message.text)
+        {
+            case "!vote ice_cavern":
+                {
+                    vote_controller.vote(VoteOption.ICE_CAVERN);
+
+                    break;
+                }
+
+            case "!vote underworld":
+                {
+                    vote_controller.vote(VoteOption.UNDERWORLD);
+
+                    break;
+                }
+        }
+
+        //scroll to the bottom
         Canvas.ForceUpdateCanvases();
         chat_scroll_rect.verticalNormalizedPosition = 0.0f;
     }
