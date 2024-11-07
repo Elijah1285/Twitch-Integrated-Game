@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float camera_pitch = 0.0f;
+    float speed_multiplier = 1.0f;
 
+    [SerializeField] float sprint_multiplier;
     [SerializeField] float movement_speed;
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_height;
@@ -29,14 +31,24 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
+        //check if sprinting
+        if (Input.GetButtonDown("Sprint"))
+        {
+            speed_multiplier = sprint_multiplier;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            speed_multiplier = 1.0f;
+        }
+
         //get movement inputs
         float horizontal_input = Input.GetAxis("Horizontal");
         float vertical_input = Input.GetAxis("Vertical");
 
         //apply movement inputs
         //calculate movement magnitude
-        velocity.x = horizontal_input * movement_speed * Time.deltaTime;
-        velocity.z = vertical_input * movement_speed * Time.deltaTime;
+        velocity.x = horizontal_input * movement_speed * speed_multiplier * Time.deltaTime;
+        velocity.z = vertical_input * movement_speed * speed_multiplier * Time.deltaTime;
 
         //check jump input
         if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
