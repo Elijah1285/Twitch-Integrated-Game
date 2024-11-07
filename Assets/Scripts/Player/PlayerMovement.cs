@@ -53,8 +53,7 @@ public class PlayerMovement : MonoBehaviour
         //check jump input
         if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
         {
-            //work out y velocity based on target jump height
-            velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
+            jump();
         }
 
         //apply gravity
@@ -95,5 +94,17 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed);
         
         camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
+    }
+
+    void jump()
+    {
+        //work out y velocity based on target jump height
+        velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
+    }
+
+    public void jump(float override_jump_height)
+    {
+        //work out y velocity based on target jump height
+        velocity.y = Mathf.Sqrt(override_jump_height * -2.0f * gravity);
     }
 }
