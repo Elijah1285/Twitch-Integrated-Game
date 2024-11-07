@@ -6,12 +6,13 @@ public class StationaryShootingEnemy : MonoBehaviour
 {
     float fire_timer;
     [SerializeField] float time_to_fire;
+    [SerializeField] float firing_offset;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform firing_point;
 
     void Start()
     {
-        fire_timer = time_to_fire;
+        fire_timer = time_to_fire + firing_offset;
     }
 
     void Update()

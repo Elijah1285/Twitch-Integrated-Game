@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
     void movePlayer()
     {
         //check if sprinting
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButton("Sprint") && character_controller.isGrounded)
         {
             speed_multiplier = sprint_multiplier;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (!Input.GetButton("Sprint") && character_controller.isGrounded)
         {
             speed_multiplier = 1.0f;
         }

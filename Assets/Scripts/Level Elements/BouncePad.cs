@@ -10,7 +10,6 @@ public class BouncePad : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("a");
             other.GetComponent<PlayerMovement>().jump(bounce_height);
         }
     }
