@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4790869933188148343}
   - component: {fileID: 1020722812944428818}
   m_Layer: 0
-  m_Name: PFB_Enemy
+  m_Name: PFB_PRT_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
