@@ -217,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31ed19c361605bd4eb54eb82cf5b501b, type: 2}
+  - {fileID: 2100000, guid: 4c3142966a9639d48bac3187158ff937, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -324,7 +324,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31ed19c361605bd4eb54eb82cf5b501b, type: 2}
+  - {fileID: 2100000, guid: 4c3142966a9639d48bac3187158ff937, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 5572913326723531863}
   - component: {fileID: 6442444301445565249}
   m_Layer: 0
-  m_Name: frame_004
+  m_Name: frame_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,7 +431,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31ed19c361605bd4eb54eb82cf5b501b, type: 2}
+  - {fileID: 2100000, guid: 4c3142966a9639d48bac3187158ff937, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

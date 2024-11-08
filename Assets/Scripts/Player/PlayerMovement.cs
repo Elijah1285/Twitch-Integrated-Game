@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float camera_pitch = 0.0f;
     float speed_multiplier = 1.0f;
+    float accelerating_timer;
 
     [SerializeField] float sprint_multiplier;
     [SerializeField] float movement_speed;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movePlayer();
         rotatePlayerAndCamera();
+        updateAcceleratingTimer();
     }
 
     void movePlayer()
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         {
             speed_multiplier = sprint_multiplier;
         }
-        else if (!Input.GetButton("Sprint") && character_controller.isGrounded)
+        else if (!Input.GetButton("Sprint") && character_controller.isGrounded && accelerating_timer <= 0.0f)
         {
             speed_multiplier = 1.0f;
         }
@@ -96,15 +98,29 @@ public class PlayerMovement : MonoBehaviour
         camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
 
+    void updateAcceleratingTimer()
+    {
+        if (accelerating_timer > 0.0f)
+        {
+            accelerating_timer -= Time.deltaTime;
+        }
+    }
+
     void jump()
     {
         //work out y velocity based on target jump height
         velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
     }
 
-    public void jump(float override_jump_height)
+    public void jump(float override_jump_height, bool accelerate)
     {
         //work out y velocity based on target jump height
         velocity.y = Mathf.Sqrt(override_jump_height * -2.0f * gravity);
+
+        if (accelerate)
+        {
+            speed_multiplier = sprint_multiplier;
+            accelerating_timer = 0.5f;
+        }
     }
 }

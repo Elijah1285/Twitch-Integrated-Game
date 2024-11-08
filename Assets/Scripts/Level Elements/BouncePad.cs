@@ -5,12 +5,13 @@ using UnityEngine;
 public class BouncePad : MonoBehaviour
 {
     [SerializeField] float bounce_height;
+    [SerializeField] bool cause_acceleration;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().jump(bounce_height);
+            other.GetComponent<PlayerMovement>().jump(bounce_height, cause_acceleration);
         }
     }
 }
