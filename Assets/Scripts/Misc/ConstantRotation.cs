@@ -8,6 +8,8 @@ public class ConstantRotation : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(rotation * Time.deltaTime);
+        Quaternion delta_rotation = Quaternion.Euler(rotation * Time.deltaTime);
+
+        transform.rotation *= delta_rotation;
     }
 }

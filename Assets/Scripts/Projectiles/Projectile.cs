@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] bool use_this_movement;
+
     [SerializeField] float lifetime;
     [SerializeField] float speed;
     [SerializeField] int damage;
 
     void Update()
     {
+        Vector3 vector = new Vector3(0.0f, 0.0f, 0.0f);
+
         //calculate movement vector
-        Vector3 vector = Vector3.forward * speed * Time.deltaTime;
+        if (use_this_movement)
+        {
+            vector = Vector3.forward * speed * Time.deltaTime;
+        }
 
         //move the projectile
         transform.Translate(vector);
