@@ -39,4 +39,9 @@ public class Projectile : MonoBehaviour
             other.GetComponent<PlayerHealth>().takeDamage(damage);
         }
     }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
 }

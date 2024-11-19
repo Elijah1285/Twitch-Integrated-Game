@@ -8,6 +8,7 @@ public class StationaryShootingEnemy : MonoBehaviour
 
     Enemy enemy;
 
+    [SerializeField] bool set_direction_projectiles;
     [SerializeField] float time_to_fire;
     [SerializeField] float firing_offset;
     [SerializeField] GameObject projectile;
@@ -23,19 +24,24 @@ public class StationaryShootingEnemy : MonoBehaviour
     {
         if (enemy.active)
         {
-            fire_timer -= Time.deltaTime;
+                fire_timer -= Time.deltaTime;
 
-            if (fire_timer <= 0)
-            {
-                fire();
+                if (fire_timer <= 0)
+                {
+                    fire();
 
-                fire_timer = time_to_fire;
-            }
+                    fire_timer = time_to_fire;
+                }
         }
     }
 
     void fire()
     {
-        Instantiate(projectile, firing_point.position, transform.rotation);
+        GameObject current_projectile = Instantiate(projectile, firing_point.position, transform.rotation);
+
+        if (set_direction_projectiles)
+        {
+            current_projectile.GetComponent<SetDirectionProjectile>().setMoveVector(transform.forward);
+        }
     }
 }
