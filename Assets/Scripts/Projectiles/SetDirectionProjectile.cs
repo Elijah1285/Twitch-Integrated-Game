@@ -8,7 +8,7 @@ public class SetDirectionProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(move_vector * GetComponent<Projectile>().getSpeed() * Time.deltaTime);
+        transform.Translate(move_vector * GetComponent<Projectile>().getSpeed() * Time.deltaTime, Space.World);
     }
 
     public void setMoveVector(Vector3 new_move_vector)

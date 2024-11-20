@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float camera_pitch = 0.0f;
     float speed_multiplier = 1.0f;
-    float accelerating_timer;
+    float accelerating_timer = 0.0f;
 
     [SerializeField] float sprint_multiplier;
     [SerializeField] float movement_speed;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] bool use_this_movement;
+    [SerializeField] bool do_not_use_this_movement;
 
     [SerializeField] float lifetime;
     [SerializeField] float speed;
@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
         Vector3 vector = new Vector3(0.0f, 0.0f, 0.0f);
 
         //calculate movement vector
-        if (use_this_movement)
+        if (!do_not_use_this_movement)
         {
             vector = Vector3.forward * speed * Time.deltaTime;
         }
