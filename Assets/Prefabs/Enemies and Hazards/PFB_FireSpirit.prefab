@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1004559470427292711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.1, z: 0.5}
+  m_LocalPosition: {x: 0.25, y: 0.1, z: 0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1095786319389258145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0.1, z: 0.5}
+  m_LocalPosition: {x: -0.25, y: 0.1, z: 0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -420,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 271166110395765223, guid: 6165e514b9df011489f4be7e27de46f2, type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 271166110395765223, guid: 6165e514b9df011489f4be7e27de46f2, type: 3}
       propertyPath: ShapeModule.radiusThickness
@@ -565,6 +565,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7699294338077217200, guid: 8284857b9729e7e4c97b221eadf3ddd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5761677873858372986}
+    - targetCorrespondingSourceObject: {fileID: 7699294338077217200, guid: 8284857b9729e7e4c97b221eadf3ddd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5976193623853352011}
   m_SourcePrefab: {fileID: 100100000, guid: 8284857b9729e7e4c97b221eadf3ddd1, type: 3}
 --- !u!1 &1263684358765493030 stripped
 GameObject:
@@ -604,8 +607,23 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.65
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5976193623853352011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263684358765493030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 0}
+  endOfPathInstruction: 0
+  speed: 5
 --- !u!4 &4119799155053594337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790869933188148343, guid: 8284857b9729e7e4c97b221eadf3ddd1, type: 3}
