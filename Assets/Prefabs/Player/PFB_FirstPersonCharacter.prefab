@@ -623,7 +623,7 @@ MonoBehaviour:
   sprint_multiplier: 2
   movement_speed: 1500
   rotation_speed: 1000
-  jump_height: 2
+  jump_height: 1.25
   gravity: -20
   camera_transform: {fileID: 8085304698619219912}
 --- !u!114 &4640533779104011533

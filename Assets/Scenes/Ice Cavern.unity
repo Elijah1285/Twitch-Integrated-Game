@@ -5324,11 +5324,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6230944796676488907, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_Name
-      value: PFB_SlowZone
+      value: slow_zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.684429
+      value: 17.1
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5336,7 +5344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.722336
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalRotation.w

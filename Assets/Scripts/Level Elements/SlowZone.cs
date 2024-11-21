@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float slow_down_multiplier;
+
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+            other.GetComponent<PlayerMovement>().setSlowDownMultiplier(slow_down_multiplier);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerExit(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+            other.GetComponent<PlayerMovement>().setSlowDownMultiplier(1.0f);
+        }
     }
 }

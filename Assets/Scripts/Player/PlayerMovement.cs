@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float camera_pitch = 0.0f;
     float speed_multiplier = 1.0f;
+    float slow_down_multiplier = 1.0f;
     float accelerating_timer = 0.0f;
 
     [SerializeField] float sprint_multiplier;
@@ -49,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
         //apply movement inputs
         //calculate movement magnitude
-        velocity.x = horizontal_input * movement_speed * speed_multiplier * Time.deltaTime;
-        velocity.z = vertical_input * movement_speed * speed_multiplier * Time.deltaTime;
+        velocity.x = horizontal_input * movement_speed * speed_multiplier * slow_down_multiplier * Time.deltaTime;
+        velocity.z = vertical_input * movement_speed * speed_multiplier * slow_down_multiplier * Time.deltaTime;
 
         //check jump input
         if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
@@ -122,5 +123,10 @@ public class PlayerMovement : MonoBehaviour
             speed_multiplier = sprint_multiplier;
             accelerating_timer = 0.5f;
         }
+    }
+
+    public void setSlowDownMultiplier(float new_slow_down_multiplier)
+    {
+        slow_down_multiplier = new_slow_down_multiplier;
     }
 }
