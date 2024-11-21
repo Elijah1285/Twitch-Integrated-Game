@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3763051282443568173}
   - component: {fileID: 7137234668086742852}
   m_Layer: 0
-  m_Name: PFB_Fire
+  m_Name: PFB_TallFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.75
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -4846,7 +4846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac389010b4a73646bd44d65094621b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_to_damage: 0.2
+  time_to_damage: 0.5
   damage: 1
 --- !u!135 &7137234668086742852
 SphereCollider:
@@ -4867,5 +4867,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 1, z: 0}
