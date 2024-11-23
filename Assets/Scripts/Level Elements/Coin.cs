@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillZone : MonoBehaviour
+public class Coin : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().takeDamageOrHeal(9999);
+            other.GetComponent<PlayerCoins>().collectCoin();
         }
     }
 }

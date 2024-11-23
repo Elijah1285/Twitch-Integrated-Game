@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().takeDamage(damage);
+            other.GetComponent<PlayerHealth>().takeDamageOrHeal(damage);
         }
     }
 

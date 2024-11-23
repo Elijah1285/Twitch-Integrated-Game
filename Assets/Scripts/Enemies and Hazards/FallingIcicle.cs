@@ -47,7 +47,7 @@ public class FallingIcicle : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().takeDamage(damage);
+            other.GetComponent<PlayerHealth>().takeDamageOrHeal(damage);
 
             Destroy(gameObject);
         }

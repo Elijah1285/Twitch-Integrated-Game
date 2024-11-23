@@ -7,7 +7,6 @@ using TMPro;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int hitpoints;
-    Canvas canvas;
     [SerializeField] TextMeshProUGUI hitpoints_text;
 
     void Start()
@@ -15,7 +14,8 @@ public class PlayerHealth : MonoBehaviour
         hitpoints_text.text = "HP: " + hitpoints.ToString();
     }
 
-    public void takeDamage(int damage)
+    //passing in a positive integer will damage, a negative one will heal
+    public void takeDamageOrHeal(int damage)
     {
         hitpoints -= damage;
         hitpoints_text.text = "HP: " + hitpoints.ToString();

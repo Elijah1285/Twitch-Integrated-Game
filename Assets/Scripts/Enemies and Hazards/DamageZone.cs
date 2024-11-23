@@ -28,7 +28,7 @@ public class DamageZone : MonoBehaviour
         {
             if (damage_timer <= 0)
             {
-                other.GetComponent<PlayerHealth>().takeDamage(damage);
+                other.GetComponent<PlayerHealth>().takeDamageOrHeal(damage);
 
                 damage_timer = time_to_damage;
             }
