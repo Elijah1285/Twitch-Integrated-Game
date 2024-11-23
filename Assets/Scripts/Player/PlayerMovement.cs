@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         movePlayer();
         rotatePlayerAndCamera();
         updateTimers();
-        Debug.Log(character_controller.isGrounded);
     }
 
     void movePlayer()

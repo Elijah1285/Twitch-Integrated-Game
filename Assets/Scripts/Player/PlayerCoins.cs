@@ -25,4 +25,10 @@ public class PlayerCoins : MonoBehaviour
 
         coins_text.text = "Coins: " + coin_count.ToString();
     }
+
+    public void resetCoins()
+    {
+        coin_count = 0;
+        coins_text.text = "Coins: " + coin_count.ToString();
+    }
 }

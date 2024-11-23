@@ -45,5 +45,6 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<CharacterController>().enabled = true;
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
+        GetComponent<PlayerCoins>().resetCoins();
     }
 }
