@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerCoins>().collectCoin();
+            Destroy(gameObject);
         }
     }
 }

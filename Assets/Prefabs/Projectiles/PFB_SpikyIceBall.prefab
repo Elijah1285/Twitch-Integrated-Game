@@ -2852,7 +2852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119717696697905724, guid: 67c714d3dde1538488d58c8c3e3fa72c, type: 3}
       propertyPath: lifetime
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8119717696697905724, guid: 67c714d3dde1538488d58c8c3e3fa72c, type: 3}
       propertyPath: do_not_use_this_movement

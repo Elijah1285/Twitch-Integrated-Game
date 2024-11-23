@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 300655725231389226}
   - component: {fileID: 7286207404313254322}
   - component: {fileID: 4640533779104011533}
+  - component: {fileID: -1051867811388316841}
   m_Layer: 0
   m_Name: PFB_FirstPersonCharacter
   m_TagString: Player
@@ -640,6 +641,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoints: 5
   hitpoints_text: {fileID: 0}
+--- !u!114 &-1051867811388316841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935131353371124381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbc3f81aa0df024397ba310bfc87207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins_text: {fileID: 0}
 --- !u!1 &6488488017319881199
 GameObject:
   m_ObjectHideFlags: 0

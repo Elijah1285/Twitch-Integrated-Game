@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1051867811388316841, guid: 66bd1710cc526aa48a7d3ca0ce3b6e49, type: 3}
+      propertyPath: coins_text
+      value: 
+      objectReference: {fileID: 1200864412}
     - target: {fileID: 142642239440877402, guid: 66bd1710cc526aa48a7d3ca0ce3b6e49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.010000229
@@ -10102,6 +10106,17 @@ PrefabInstance:
 --- !u!114 &1200864411 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1720462707225295399, guid: 654bf1f0b2787b745ae1bad5a6205cb9, type: 3}
+  m_PrefabInstance: {fileID: 1200864410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1200864412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6316625992842506576, guid: 654bf1f0b2787b745ae1bad5a6205cb9, type: 3}
   m_PrefabInstance: {fileID: 1200864410}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
