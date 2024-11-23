@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float camera_pitch = 0.0f;
-    float speed_multiplier = 1.0f;
-    float slow_down_multiplier = 1.0f;
     float accelerating_timer = 0.0f;
+    float jump_timer = 0.0f;
+    float internal_speed_multiplier = 1.0f;
+    float external_speed_multiplier = 1.0f;
 
-    [SerializeField] float sprint_multiplier;
+    [SerializeField] float sprint_speed_multiplier;
+    [SerializeField] float sneak_speed_multiplier;
+
     [SerializeField] float movement_speed;
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_height;
@@ -29,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
     {
         movePlayer();
         rotatePlayerAndCamera();
-        updateAcceleratingTimer();
+        updateTimers();
+        Debug.Log(character_controller.isGrounded);
     }
 
     void movePlayer()
@@ -37,11 +41,15 @@ public class PlayerMovement : MonoBehaviour
         //check if sprinting
         if (Input.GetButton("Sprint") && character_controller.isGrounded)
         {
-            speed_multiplier = sprint_multiplier;
+            internal_speed_multiplier = sprint_speed_multiplier;
         }
-        else if (!Input.GetButton("Sprint") && character_controller.isGrounded && accelerating_timer <= 0.0f)
+        else if (Input.GetButton("Sneak") && character_controller.isGrounded)
         {
-            speed_multiplier = 1.0f;
+            internal_speed_multiplier = sneak_speed_multiplier;
+        }
+        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && character_controller.isGrounded && accelerating_timer <= 0.0f)
+        {
+            internal_speed_multiplier = 1.0f;
         }
 
         //get movement inputs
@@ -50,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
         //apply movement inputs
         //calculate movement magnitude
-        velocity.x = horizontal_input * movement_speed * speed_multiplier * slow_down_multiplier * Time.deltaTime;
-        velocity.z = vertical_input * movement_speed * speed_multiplier * slow_down_multiplier * Time.deltaTime;
+        velocity.x = horizontal_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
+        velocity.z = vertical_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
 
         //check jump input
         if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
@@ -64,6 +72,12 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y += gravity * Time.deltaTime;
         }
+        //reset y velocity if grounded
+        else if (jump_timer <= 0.0f)
+        {
+            velocity.y = 0.0f;
+        }
+
 
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
@@ -99,34 +113,43 @@ public class PlayerMovement : MonoBehaviour
         camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
 
-    void updateAcceleratingTimer()
+    void updateTimers()
     {
         if (accelerating_timer > 0.0f)
         {
             accelerating_timer -= Time.deltaTime;
         }
+
+        if (jump_timer > 0.0f)
+        {
+            jump_timer -= Time.deltaTime;
+        }
     }
 
     void jump()
     {
+        jump_timer = 0.1f;
+
         //work out y velocity based on target jump height
         velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
     }
 
     public void jump(float override_jump_height, bool accelerate)
     {
+        jump_timer = 0.1f;
+
         //work out y velocity based on target jump height
         velocity.y = Mathf.Sqrt(override_jump_height * -2.0f * gravity);
 
         if (accelerate)
         {
-            speed_multiplier = sprint_multiplier;
+            internal_speed_multiplier = sprint_speed_multiplier;
             accelerating_timer = 0.5f;
         }
     }
 
-    public void setSlowDownMultiplier(float new_slow_down_multiplier)
+    public void setExternalSpeedMultiplier(float new_slow_down_multiplier)
     {
-        slow_down_multiplier = new_slow_down_multiplier;
+        external_speed_multiplier = new_slow_down_multiplier;
     }
 }

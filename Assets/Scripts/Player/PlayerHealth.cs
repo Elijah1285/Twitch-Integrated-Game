@@ -6,12 +6,19 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int hitpoints;
+    int hitpoints;
+    [SerializeField] int max_hitpoints;
     [SerializeField] TextMeshProUGUI hitpoints_text;
+
+    //current checkpoint in world space
+    Vector3 current_checkpoint;
 
     void Start()
     {
+        hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
+
+        current_checkpoint = transform.position;
     }
 
     //passing in a positive integer will damage, a negative one will heal
@@ -22,12 +29,21 @@ public class PlayerHealth : MonoBehaviour
 
         if (hitpoints <= 0)
         {
-            killPlayer();
+            respawn();
         }
     }
 
-    void killPlayer()
+    public void setCheckPoint(Vector3 new_checkpoint)
     {
-        SceneManager.LoadScene("Game Over");
+        current_checkpoint = new_checkpoint;
+    }
+
+    void respawn()
+    {
+        GetComponent<CharacterController>().enabled = false;
+        this.transform.position = current_checkpoint;
+        GetComponent<CharacterController>().enabled = true;
+        hitpoints = max_hitpoints;
+        hitpoints_text.text = "HP: " + hitpoints.ToString();
     }
 }

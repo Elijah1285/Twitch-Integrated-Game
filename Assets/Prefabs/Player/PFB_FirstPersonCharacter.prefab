@@ -621,8 +621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288142076a1b67e4da3387d2d5476947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprint_multiplier: 2
-  movement_speed: 1500
+  sprint_speed_multiplier: 3
+  sneak_speed_multiplier: 0.25
+  movement_speed: 1000
   rotation_speed: 1000
   jump_height: 1.25
   gravity: -20
@@ -639,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cf4faeef1042a4bb543205a040b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 5
+  max_hitpoints: 5
   hitpoints_text: {fileID: 0}
 --- !u!114 &-1051867811388316841
 MonoBehaviour:

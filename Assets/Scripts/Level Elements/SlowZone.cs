@@ -10,7 +10,7 @@ public class SlowZone : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().setSlowDownMultiplier(slow_down_multiplier);
+            other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(slow_down_multiplier);
         }
     }
 
@@ -18,7 +18,7 @@ public class SlowZone : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().setSlowDownMultiplier(1.0f);
+            other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(1.0f);
         }
     }
 }
