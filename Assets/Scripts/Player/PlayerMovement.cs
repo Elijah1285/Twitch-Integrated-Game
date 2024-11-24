@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    bool is_grounded;
+
     float camera_pitch = 0.0f;
     float accelerating_timer = 0.0f;
     float jump_timer = 0.0f;
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
 
+    Vector3 velocity;
+
+    CharacterController character_controller;
+
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
-
     [SerializeField] float movement_speed;
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_height;
     [SerializeField] float gravity;
+    [SerializeField] float ground_check_radius;
+
+    [SerializeField] Transform ground_check_transform;
     [SerializeField] Transform camera_transform;
-
-    Vector3 velocity;
-
-    CharacterController character_controller;
 
     void Start()
     {
@@ -37,16 +41,25 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
+        //check if grounded
+        is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
+
+        //safety check
+        if (character_controller.isGrounded && jump_timer <= 0.0f)
+        {
+            velocity.y = 0.0f;
+        }
+
         //check if sprinting
-        if (Input.GetButton("Sprint") && character_controller.isGrounded)
+        if (Input.GetButton("Sprint") && is_grounded)
         {
             internal_speed_multiplier = sprint_speed_multiplier;
         }
-        else if (Input.GetButton("Sneak") && character_controller.isGrounded)
+        else if (Input.GetButton("Sneak") && is_grounded)
         {
             internal_speed_multiplier = sneak_speed_multiplier;
         }
-        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && character_controller.isGrounded && accelerating_timer <= 0.0f)
+        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
         {
             internal_speed_multiplier = 1.0f;
         }
@@ -61,13 +74,13 @@ public class PlayerMovement : MonoBehaviour
         velocity.z = vertical_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
 
         //check jump input
-        if (Input.GetButtonDown("Jump") && character_controller.isGrounded)
+        if (Input.GetButtonDown("Jump") && is_grounded)
         {
             jump();
         }
 
         //apply gravity
-        if (!character_controller.isGrounded)
+        if (!is_grounded)
         {
             velocity.y += gravity * Time.deltaTime;
         }
@@ -76,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = 0.0f;
         }
-
 
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
