@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController character_controller;
 
+    MoveAudioState move_audio_state;
+
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
     [SerializeField] float movement_speed;
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movePlayer();
+        updateMoveAudioState();
         rotatePlayerAndCamera();
         updateTimers();
         checkRespawn();
@@ -102,6 +105,22 @@ public class PlayerMovement : MonoBehaviour
 
         //apply calculated movement
         character_controller.Move(velocity * Time.deltaTime);
+    }
+
+    void updateMoveAudioState()
+    {
+        if (is_grounded && (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) && internal_speed_multiplier == 1.0f)
+        {
+            move_audio_state = MoveAudioState.WALKING;
+        }
+        else if (is_grounded && (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) && internal_speed_multiplier > 1.0f)
+        {
+            move_audio_state = MoveAudioState.SPRINTING;
+        }
+        else
+        {
+            move_audio_state = MoveAudioState.NO_AUDIO;
+        }
     }
 
     void rotatePlayerAndCamera()
@@ -180,5 +199,12 @@ public class PlayerMovement : MonoBehaviour
     public void setExternalSpeedMultiplier(float new_slow_down_multiplier)
     {
         external_speed_multiplier = new_slow_down_multiplier;
+    }
+
+    enum MoveAudioState
+    {
+        NO_AUDIO = 1,
+        WALKING = 2,
+        SPRINTING = 3
     }
 }
