@@ -7,8 +7,12 @@ using TMPro;
 public class PlayerHealth : MonoBehaviour
 {
     int hitpoints;
+
     [SerializeField] int max_hitpoints;
+
     [SerializeField] TextMeshProUGUI hitpoints_text;
+    [SerializeField] AudioClip hurt_sound;
+
 
     //current checkpoint in world space
     Vector3 current_checkpoint;
@@ -31,6 +35,12 @@ public class PlayerHealth : MonoBehaviour
         {
             respawn();
         }
+
+        //check if should play hurt sound
+        if (damage > 0)
+        {
+            GetComponent<AudioSource>().PlayOneShot(hurt_sound);
+        }
     }
 
     public void setCheckPoint(Vector3 new_checkpoint)
@@ -38,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         current_checkpoint = new_checkpoint;
     }
 
-    void respawn()
+    public void respawn()
     {
         GetComponent<CharacterController>().enabled = false;
         this.transform.position = current_checkpoint;

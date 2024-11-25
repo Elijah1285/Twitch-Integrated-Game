@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform ground_check_transform;
     [SerializeField] Transform camera_transform;
 
+    [SerializeField] AudioClip jump_sound;
+
     void Start()
     {
         character_controller = GetComponent<CharacterController>();
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         movePlayer();
         rotatePlayerAndCamera();
         updateTimers();
+        checkRespawn();
     }
 
     void movePlayer()
@@ -137,12 +140,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void checkRespawn()
+    {
+        if (Input.GetButtonDown("Respawn"))
+        {
+            GetComponent<PlayerHealth>().respawn();
+        }
+    }
+
     void jump()
     {
         jump_timer = 0.1f;
 
         //work out y velocity based on target jump height
         velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
+
+        //play jump sound
+        GetComponent<AudioSource>().PlayOneShot(jump_sound);
     }
 
     public void jump(float override_jump_height, bool accelerate)

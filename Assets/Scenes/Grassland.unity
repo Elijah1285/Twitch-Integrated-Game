@@ -3526,8 +3526,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280, y: -177.49998}
-  m_SizeDelta: {x: 230, y: 95}
+  m_AnchoredPosition: {x: -280, y: -165}
+  m_SizeDelta: {x: 230, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &602070969
 MonoBehaviour:
@@ -3556,7 +3556,9 @@ MonoBehaviour:
     Left Ctrl: Sneak
 
     Spacebar:
-    Jump'
+    Jump
+
+    R: Respawn'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

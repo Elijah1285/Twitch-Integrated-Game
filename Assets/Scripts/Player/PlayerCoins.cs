@@ -6,7 +6,9 @@ using TMPro;
 public class PlayerCoins : MonoBehaviour
 {
     int coin_count = 0;
+
     [SerializeField] TextMeshProUGUI coins_text;
+    [SerializeField] AudioClip coin_collect_sound;
 
     void Start()
     {
@@ -24,6 +26,8 @@ public class PlayerCoins : MonoBehaviour
         }
 
         coins_text.text = "Coins: " + coin_count.ToString();
+
+        GetComponent<AudioSource>().PlayOneShot(coin_collect_sound);
     }
 
     public void resetCoins()
