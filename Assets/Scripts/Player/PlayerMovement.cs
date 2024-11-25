@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform camera_transform;
 
     [SerializeField] AudioClip jump_sound;
+    [SerializeField] AudioClip jump_pad_sound;
     [SerializeField] AudioClip walk_sound;
     [SerializeField] AudioClip sprint_sound;
-    [SerializeField] AudioSource movement_audio_source;
-    [SerializeField] AudioSource one_shot_audio_source;
+    [SerializeField] AudioSource audio_source;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movePlayer();
-        updateMoveAudioState();
+        updateMoveAudio();
         rotatePlayerAndCamera();
         updateTimers();
         checkRespawn();
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         character_controller.Move(velocity * Time.deltaTime);
     }
 
-    void updateMoveAudioState()
+    void updateMoveAudio()
     {
         if (is_grounded && (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) && internal_speed_multiplier == 1.0f)
         {
@@ -120,6 +120,32 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             move_audio_state = MoveAudioState.NO_AUDIO;
+        }
+
+        switch(move_audio_state)
+        {
+            case MoveAudioState.WALKING:
+                {
+                    audio_source.clip = walk_sound;
+                    break;
+                }
+
+            case MoveAudioState.SPRINTING:
+                {
+                    audio_source.clip = sprint_sound;
+                    break;
+                }
+
+            case MoveAudioState.NO_AUDIO:
+                {
+                    audio_source.clip = null;
+                    return;
+                }
+        }
+
+        if (!audio_source.isPlaying)
+        {
+            audio_source.Play();
         }
     }
 
@@ -179,10 +205,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
 
         //play jump sound
-        one_shot_audio_source.PlayOneShot(jump_sound);
+        audio_source.PlayOneShot(jump_sound);
     }
 
-    public void jump(float override_jump_height, bool accelerate)
+    public void padJump(float override_jump_height, bool accelerate)
     {
         jump_timer = 0.1f;
 
@@ -194,6 +220,9 @@ public class PlayerMovement : MonoBehaviour
             internal_speed_multiplier = sprint_speed_multiplier;
             accelerating_timer = 0.5f;
         }
+
+        //play jump pad sound
+        audio_source.PlayOneShot(jump_pad_sound);
     }
 
     public void setExternalSpeedMultiplier(float new_slow_down_multiplier)

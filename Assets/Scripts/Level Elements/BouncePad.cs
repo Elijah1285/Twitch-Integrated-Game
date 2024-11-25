@@ -11,7 +11,7 @@ public class BouncePad : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().jump(bounce_height, cause_acceleration);
+            other.GetComponent<PlayerMovement>().padJump(bounce_height, cause_acceleration);
         }
     }
 }

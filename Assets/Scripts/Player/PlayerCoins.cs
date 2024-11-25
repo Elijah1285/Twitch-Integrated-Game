@@ -9,7 +9,6 @@ public class PlayerCoins : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI coins_text;
     [SerializeField] AudioClip coin_collect_sound;
-    [SerializeField] AudioSource one_shot_audio_source;
 
     void Start()
     {
@@ -28,7 +27,7 @@ public class PlayerCoins : MonoBehaviour
 
         coins_text.text = "Coins: " + coin_count.ToString();
 
-        one_shot_audio_source.PlayOneShot(coin_collect_sound);
+        GetComponent<AudioSource>().PlayOneShot(coin_collect_sound);
     }
 
     public void resetCoins()

@@ -13,7 +13,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] TextMeshProUGUI hitpoints_text;
     [SerializeField] AudioClip hurt_sound;
 
-
     //current checkpoint in world space
     Vector3 current_checkpoint;
 
