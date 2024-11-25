@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform camera_transform;
 
     [SerializeField] AudioClip jump_sound;
+    [SerializeField] AudioClip walk_sound;
+    [SerializeField] AudioClip sprint_sound;
+    [SerializeField] AudioSource movement_audio_source;
+    [SerializeField] AudioSource one_shot_audio_source;
 
     void Start()
     {
@@ -156,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
 
         //play jump sound
-        GetComponent<AudioSource>().PlayOneShot(jump_sound);
+        one_shot_audio_source.PlayOneShot(jump_sound);
     }
 
     public void jump(float override_jump_height, bool accelerate)
