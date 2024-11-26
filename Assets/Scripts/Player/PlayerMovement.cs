@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -53,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
         //check if grounded
         is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
 
+        if (is_grounded && jump_timer <= 0.0f)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
+        }
+
         //check if sprinting
         if (Input.GetButton("Sprint") && is_grounded)
         {
@@ -84,6 +90,9 @@ public class PlayerMovement : MonoBehaviour
 
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
+
+        //so physics doesn't mess with my movement
+        rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
 
         //apply calculated movement
         rb.MovePosition(rb.position + (velocity * Time.deltaTime));
@@ -182,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
     void jump()
     {
         jump_timer = 0.1f;
+        rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
         rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
 
@@ -192,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
     public void padJump(float override_jump_force, bool accelerate)
     {
         jump_timer = 0.1f;
+        rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
         rb.AddForce(Vector3.up * override_jump_force, ForceMode.Impulse);
 

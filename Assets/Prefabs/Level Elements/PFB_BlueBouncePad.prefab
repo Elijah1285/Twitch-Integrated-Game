@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 975951999171482508, guid: 6a30fdb43418e96499bbe8e6f1a0fc02, type: 3}
+      propertyPath: bounce_force
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 975951999171482508, guid: 6a30fdb43418e96499bbe8e6f1a0fc02, type: 3}
       propertyPath: bounce_height
       value: 10
       objectReference: {fileID: 0}
