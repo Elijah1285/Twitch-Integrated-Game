@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         //reset y velocity if grounded
         else if (jump_timer <= 0.0f)
         {
-            velocity.y = 0.0f;
+            velocity.y = -3.0f;
         }
 
         //calculate movement direction
