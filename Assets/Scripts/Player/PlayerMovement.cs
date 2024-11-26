@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
 
-    CharacterController character_controller;
+    Rigidbody rb;
 
     MoveAudioState move_audio_state;
 
@@ -22,8 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sneak_speed_multiplier;
     [SerializeField] float movement_speed;
     [SerializeField] float rotation_speed;
-    [SerializeField] float jump_height;
-    [SerializeField] float gravity;
+    [SerializeField] float jump_force;
     [SerializeField] float ground_check_radius;
 
     [SerializeField] Transform ground_check_transform;
@@ -37,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        character_controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -53,12 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //check if grounded
         is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
-
-        //safety check
-        if (character_controller.isGrounded && jump_timer <= 0.0f)
-        {
-            velocity.y = 0.0f;
-        }
 
         //check if sprinting
         if (Input.GetButton("Sprint") && is_grounded)
@@ -89,22 +82,11 @@ public class PlayerMovement : MonoBehaviour
             jump();
         }
 
-        //apply gravity
-        if (!is_grounded)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-        //reset y velocity if grounded
-        else if (jump_timer <= 0.0f)
-        {
-            velocity.y = -3.0f;
-        }
-
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
 
         //apply calculated movement
-        character_controller.Move(velocity * Time.deltaTime);
+        rb.MovePosition(rb.position + (velocity * Time.deltaTime));
     }
 
     void updateMoveAudio()
@@ -171,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //apply calculated rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed);
+        rb.MoveRotation(Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed));
         
         camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
@@ -201,19 +183,17 @@ public class PlayerMovement : MonoBehaviour
     {
         jump_timer = 0.1f;
 
-        //work out y velocity based on target jump height
-        velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
+        rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
 
         //play jump sound
         audio_source.PlayOneShot(jump_sound);
     }
 
-    public void padJump(float override_jump_height, bool accelerate)
+    public void padJump(float override_jump_force, bool accelerate)
     {
         jump_timer = 0.1f;
 
-        //work out y velocity based on target jump height
-        velocity.y = Mathf.Sqrt(override_jump_height * -2.0f * gravity);
+        rb.AddForce(Vector3.up * override_jump_force, ForceMode.Impulse);
 
         if (accelerate)
         {

@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
 
-        current_checkpoint = transform.position;
+        current_checkpoint = GetComponent<Rigidbody>().position;
     }
 
     //passing in a positive integer will damage, a negative one will heal
@@ -49,9 +49,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void respawn()
     {
-        GetComponent<CharacterController>().enabled = false;
-        this.transform.position = current_checkpoint;
-        GetComponent<CharacterController>().enabled = true;
+        GetComponent<Rigidbody>().position = current_checkpoint;
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
         GetComponent<PlayerCoins>().resetCoins();

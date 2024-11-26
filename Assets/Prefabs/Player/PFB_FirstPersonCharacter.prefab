@@ -478,7 +478,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142642239440877402}
-  - component: {fileID: 2914560022656931662}
   - component: {fileID: 6831414460252079472}
   - component: {fileID: 952044325883385819}
   - component: {fileID: 300655725231389226}
@@ -486,6 +485,7 @@ GameObject:
   - component: {fileID: 4640533779104011533}
   - component: {fileID: -1051867811388316841}
   - component: {fileID: 3719814919899605421}
+  - component: {fileID: 4281248945852740159}
   m_Layer: 0
   m_Name: PFB_FirstPersonCharacter
   m_TagString: Player
@@ -510,32 +510,6 @@ Transform:
   - {fileID: 4397553999885078620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &2914560022656931662
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3935131353371124381}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 0
-  m_StepOffset: 0
-  m_SkinWidth: 0.0001
-  m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6831414460252079472
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -625,10 +599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprint_speed_multiplier: 3
   sneak_speed_multiplier: 0.25
-  movement_speed: 300
+  movement_speed: 1000
   rotation_speed: 300
-  jump_height: 1.25
-  gravity: -20
+  jump_force: 5
   ground_check_radius: 0.1
   ground_check_transform: {fileID: 4397553999885078620}
   camera_transform: {fileID: 8085304698619219912}
@@ -763,6 +736,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &4281248945852740159
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935131353371124381}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 9999
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!1 &6488488017319881199
 GameObject:
   m_ObjectHideFlags: 0

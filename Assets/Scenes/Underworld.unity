@@ -14990,7 +14990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230944796676488907, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_Name
-      value: PFB_SlowZone
+      value: slow_zone
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalScale.x

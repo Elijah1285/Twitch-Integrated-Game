@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec1136e652f99244b2398d7646aa0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertical_offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 1, z: 0}
   activated_material: {fileID: 2100000, guid: 26413d63893f0a4438de2f6f8a100551, type: 2}
