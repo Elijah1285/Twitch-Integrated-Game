@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void respawn()
     {
+        GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         GetComponent<Rigidbody>().position = current_checkpoint;
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
