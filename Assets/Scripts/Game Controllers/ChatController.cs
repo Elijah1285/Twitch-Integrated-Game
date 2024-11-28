@@ -23,7 +23,7 @@ public class ChatController : MonoBehaviour
         {
             if (Input.GetButtonDown("Submit"))
             {
-                sendMessageToChat(chat_input_box.text);
+                sendMessageToChat("<Console>", chat_input_box.text);
                 chat_input_box.text = "";
             }
         }
@@ -36,7 +36,7 @@ public class ChatController : MonoBehaviour
         }
     }
 
-    public void sendMessageToChat(string text)
+    public void sendMessageToChat(string chatter, string message)
     {
         //check if exceeded max messages
         if (message_list.Count >= max_messages)
@@ -47,14 +47,14 @@ public class ChatController : MonoBehaviour
 
         //create and send new message
         Message new_message = new Message();
-        new_message.text = text;
+        new_message.text = chatter + ": " + message;
         GameObject new_text = Instantiate(text_object, chat_panel.transform);
         new_message.text_object = new_text.GetComponent<TextMeshProUGUI>();
         new_message.text_object.text = new_message.text;
         message_list.Add(new_message);
 
         //check if message matches voting options
-        switch(new_message.text)
+        switch(message)
         {
             case "!vote ice_cavern":
                 {
@@ -76,6 +76,10 @@ public class ChatController : MonoBehaviour
         //scroll to the bottom
         Canvas.ForceUpdateCanvases();
         chat_scroll_rect.verticalNormalizedPosition = 0.0f;
+    }
+    public void onChatMessage(string chatter, string message)
+    {
+        sendMessageToChat(chatter, message);
     }
 }
 

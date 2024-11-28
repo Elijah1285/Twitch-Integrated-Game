@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Net.Sockets;
 using System.IO;
 
 public class TwitchConnect : MonoBehaviour
 {
+    public UnityEvent<string, string> on_chat_message;
+
     TcpClient twitch;
     StreamReader reader;
     StreamWriter writer;
@@ -55,6 +58,17 @@ public class TwitchConnect : MonoBehaviour
         if (twitch.Available > 0)
         {
             string message = reader.ReadLine();
+
+            if (message.Contains("PRIVMSG"))
+            {
+                int split_point = message.IndexOf("!");
+                string chatter = message.Substring(1, split_point - 1);
+
+                split_point = message.IndexOf(":", 1);
+                string msg = message.Substring(split_point + 1);
+
+                on_chat_message?.Invoke(chatter, msg);
+            }
 
             print(message);
         }

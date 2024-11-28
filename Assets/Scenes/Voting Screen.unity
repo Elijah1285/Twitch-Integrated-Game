@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4542542, y: -0.5}
-  m_SizeDelta: {x: -75.06888, y: -13}
+  m_AnchoredPosition: {x: 0.65093994, y: -0.020824432}
+  m_SizeDelta: {x: -94.518, y: -7.4584}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18864396
 MonoBehaviour:
@@ -206,8 +206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17.487984, y: 0}
-  m_SizeDelta: {x: -26.232, y: 0}
+  m_AnchoredPosition: {x: -1.75, y: 0}
+  m_SizeDelta: {x: -88.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74982501
 MonoBehaviour:
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.000022888184, y: 0, z: 26.794567, w: 0}
+  m_margin: {x: -0.000022888184, y: 0, z: 0.00011825561, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -362,7 +362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 83.000015}
+  m_AnchoredPosition: {x: 0, y: 48.00001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &104126600
@@ -1407,8 +1407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.25478363, y: 0}
-  m_SizeDelta: {x: -53.01967, y: 0}
+  m_AnchoredPosition: {x: -1.75, y: 0}
+  m_SizeDelta: {x: -88.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844796550
 MonoBehaviour:
@@ -1876,8 +1876,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 617.34, y: -502}
-  m_SizeDelta: {x: 285.55, y: 30}
+  m_AnchoredPosition: {x: 511.20004, y: -504}
+  m_SizeDelta: {x: 373.99994, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107597203
 MonoBehaviour:
@@ -2139,6 +2139,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5fb46c290a62e43b68f37569a2b520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on_chat_message:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 935538800}
+        m_TargetAssemblyTypeName: ChatController, Assembly-CSharp
+        m_MethodName: onChatMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1125608282
 Transform:
   m_ObjectHideFlags: 0
@@ -2191,8 +2206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 617.34, y: -346}
-  m_SizeDelta: {x: 285.55, y: 100}
+  m_AnchoredPosition: {x: 511.2, y: -390}
+  m_SizeDelta: {x: 374, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186815234
 MonoBehaviour:
