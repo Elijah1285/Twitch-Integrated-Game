@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,6 +16,7 @@ public class ChatController : MonoBehaviour
     [SerializeField] ScrollRect chat_scroll_rect;
     [SerializeField] VoteController vote_controller;
 
+    List<string> users_voted = new List<string>();
     [SerializeField] List<Message> message_list = new List<Message>();
 
     void Update()
@@ -54,23 +56,28 @@ public class ChatController : MonoBehaviour
         message_list.Add(new_message);
 
         //check if message matches voting options
-        switch(message)
+        if (!users_voted.Contains(chatter))
         {
-            case "!vote ice_cavern":
-                {
-                    vote_controller.vote(VoteOption.ICE_CAVERN);
-                    new_message.text_object.color = new Color(0.0f, 1.0f, 1.0f);
+            switch (message)
+            {
+                case "!vote ice_cavern":
+                    {
+                        vote_controller.vote(VoteOption.ICE_CAVERN);
+                        new_message.text_object.color = new Color(0.0f, 1.0f, 1.0f);
 
-                    break;
-                }
+                        break;
+                    }
 
-            case "!vote underworld":
-                {
-                    vote_controller.vote(VoteOption.UNDERWORLD);
-                    new_message.text_object.color = new Color(1.0f, 0.55f, 0.0f);
+                case "!vote underworld":
+                    {
+                        vote_controller.vote(VoteOption.UNDERWORLD);
+                        new_message.text_object.color = new Color(1.0f, 0.55f, 0.0f);
 
-                    break;
-                }
+                        break;
+                    }
+            }
+
+            users_voted.Add(chatter);
         }
 
         //scroll to the bottom
