@@ -90,12 +90,10 @@ public class PlayerMovement : MonoBehaviour
 
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
-
-        //so physics doesn't mess with my movement
-        rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+        Debug.Log(velocity);
 
         //apply calculated movement
-        rb.MovePosition(rb.position + (velocity * Time.deltaTime));
+        rb.velocity = velocity;
     }
 
     void updateMoveAudio()
