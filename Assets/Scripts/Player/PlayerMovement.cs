@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
 
     float camera_pitch = 0.0f;
     float accelerating_timer = 0.0f;
-    float jump_timer = 0.0f;
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
 
@@ -51,15 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        //check if grounded
-        is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
+        //get movement inputs
+        //axis
+        float horizontal_input = Input.GetAxis("Horizontal");
+        float vertical_input = Input.GetAxis("Vertical");
 
-        if (is_grounded && jump_timer <= 0.0f)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
-        }
-
-        //check if sprinting
+        //sprint/sneak
         if (Input.GetButton("Sprint") && is_grounded)
         {
             internal_speed_multiplier = sprint_speed_multiplier;
@@ -73,27 +69,25 @@ public class PlayerMovement : MonoBehaviour
             internal_speed_multiplier = 1.0f;
         }
 
-        //get movement inputs
-        float horizontal_input = Input.GetAxis("Horizontal");
-        float vertical_input = Input.GetAxis("Vertical");
+        //check if grounded before checking jump input
+        is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
+
+        //jump
+        if (Input.GetButtonDown("Jump") && is_grounded)
+        {
+            jump();
+        }
 
         //apply movement inputs
         //calculate movement magnitude
         velocity.x = horizontal_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
         velocity.z = vertical_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
 
-        //check jump input
-        if (Input.GetButtonDown("Jump") && is_grounded)
-        {
-            jump();
-        }
-
         //calculate movement direction
         velocity = transform.TransformDirection(velocity);
-        Debug.Log(velocity);
 
-        //apply calculated movement
-        rb.velocity = velocity;
+        //apply calculated movement to rigidbody velocity (retain y velocity since that is handled by jumping/falling)
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
     }
 
     void updateMoveAudio()
@@ -171,11 +165,6 @@ public class PlayerMovement : MonoBehaviour
         {
             accelerating_timer -= Time.deltaTime;
         }
-
-        if (jump_timer > 0.0f)
-        {
-            jump_timer -= Time.deltaTime;
-        }
     }
 
     void checkRespawn()
@@ -188,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
 
     void jump()
     {
-        jump_timer = 0.1f;
         rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
         rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
@@ -199,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void padJump(float override_jump_force, bool accelerate)
     {
-        jump_timer = 0.1f;
         rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
         rb.AddForce(Vector3.up * override_jump_force, ForceMode.Impulse);
