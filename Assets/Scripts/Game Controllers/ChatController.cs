@@ -56,7 +56,7 @@ public class ChatController : MonoBehaviour
         message_list.Add(new_message);
 
         //check if message matches voting options
-        if (!users_voted.Contains(chatter))
+        if (!users_voted.Contains(chatter) || chatter == "<Console>")
         {
             switch (message)
             {
