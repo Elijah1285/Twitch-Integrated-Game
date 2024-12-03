@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6304069263822085523}
   - component: {fileID: 4728325689287285167}
   m_Layer: 0
-  m_Name: PFB_SlowZone
+  m_Name: PFB_SpeedChangeZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af1c48eab422074b812dc5b5f3f8dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slow_down_multiplier: 0.3
+  slow_down_multiplier: 0

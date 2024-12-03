@@ -9,7 +9,8 @@ public class BouncePad : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        //make sure it is the player and they are falling
+        if (other.tag == "Player" && other.GetComponent<Rigidbody>().velocity.y < 0.0f)
         {
             other.GetComponent<PlayerMovement>().padJump(bounce_force, cause_acceleration);
         }

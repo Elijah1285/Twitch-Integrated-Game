@@ -13,12 +13,4 @@ public class SlowZone : MonoBehaviour
             other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(slow_down_multiplier);
         }
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(1.0f);
-        }
-    }
 }
