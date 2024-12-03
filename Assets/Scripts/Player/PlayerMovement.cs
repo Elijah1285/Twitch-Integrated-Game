@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     MoveAudioState move_audio_state;
 
+    [SerializeField] float start_external_speed_multiplier;
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
     [SerializeField] float movement_speed;
@@ -37,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        GetComponent<PlayerHealth>().setCurrentCheckpointExternalSpeedMultiplier(start_external_speed_multiplier);
+        external_speed_multiplier = start_external_speed_multiplier;
     }
 
     void Update()

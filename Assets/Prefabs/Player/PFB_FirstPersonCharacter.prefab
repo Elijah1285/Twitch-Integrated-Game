@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288142076a1b67e4da3387d2d5476947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_external_speed_multiplier: 1
   sprint_speed_multiplier: 3
   sneak_speed_multiplier: 0.25
   movement_speed: 1100

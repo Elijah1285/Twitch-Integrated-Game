@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour
 {
-    [SerializeField] float slow_down_multiplier;
+    [SerializeField] float external_speed_multiplier;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(slow_down_multiplier);
+            other.GetComponent<PlayerMovement>().setExternalSpeedMultiplier(external_speed_multiplier);
         }
     }
 }

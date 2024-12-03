@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     //current checkpoint in world space
     Vector3 current_checkpoint;
+    float current_checkpoint_external_speed_multiplier;
 
     void Start()
     {
@@ -42,9 +43,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void setCheckPoint(Vector3 new_checkpoint)
+    public void setCheckPoint(Vector3 new_checkpoint, float checkpoint_external_speed_multiplier)
     {
         current_checkpoint = new_checkpoint;
+        current_checkpoint_external_speed_multiplier = checkpoint_external_speed_multiplier;
+    }
+
+    public void setCurrentCheckpointExternalSpeedMultiplier(float new_current_checkpoint_external_speed_multiplier)
+    {
+        current_checkpoint_external_speed_multiplier = new_current_checkpoint_external_speed_multiplier;
     }
 
     public void respawn()
@@ -53,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Rigidbody>().position = current_checkpoint;
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
+        GetComponent<PlayerMovement>().setExternalSpeedMultiplier(current_checkpoint_external_speed_multiplier);
         GetComponent<PlayerCoins>().resetCoins();
     }
 }

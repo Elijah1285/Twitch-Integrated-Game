@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: hitpoints_text
       value: 
       objectReference: {fileID: 1200864411}
+    - target: {fileID: 7286207404313254322, guid: 66bd1710cc526aa48a7d3ca0ce3b6e49, type: 3}
+      propertyPath: start_external_speed_multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2642,7 +2646,6 @@ Transform:
   - {fileID: 1604289423}
   - {fileID: 778244626}
   - {fileID: 798003619}
-  - {fileID: 1593462209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &321941974
@@ -14978,7 +14981,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 319544477}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 902173293779792731, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_Enabled
@@ -14988,9 +14991,13 @@ PrefabInstance:
       propertyPath: slow_down_multiplier
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4728325689287285167, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
+      propertyPath: external_speed_multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6230944796676488907, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_Name
-      value: slow_zone
+      value: speed_change_zone
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -15018,15 +15025,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15045,11 +15052,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
---- !u!4 &1593462209 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7320009376136045100, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
-  m_PrefabInstance: {fileID: 1593462208}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1598149102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18335,6 +18337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8199325427938398789, guid: 2f4206e4e0088084e8c23a1aa17dc840, type: 3}
+      propertyPath: external_speed_multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20122,3 +20128,4 @@ SceneRoots:
   - {fileID: 197216540}
   - {fileID: 118269449}
   - {fileID: 693038051}
+  - {fileID: 1593462208}
