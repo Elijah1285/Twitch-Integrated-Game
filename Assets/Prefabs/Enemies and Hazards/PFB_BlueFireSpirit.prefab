@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
   endOfPathInstruction: 0
-  speed: 6
+  speed: 4
 --- !u!4 &4119799155053594337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790869933188148343, guid: 8284857b9729e7e4c97b221eadf3ddd1, type: 3}
