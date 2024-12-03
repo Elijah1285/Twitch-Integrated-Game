@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 471713195}
   - component: {fileID: 471713194}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: game_over_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -470}
-  m_SizeDelta: {x: 770, y: 70}
+  m_SizeDelta: {x: 892, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &471713194
 MonoBehaviour:
@@ -327,8 +327,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cab96b243ebb50f4cb4c6a1ef8a10a28, type: 2}
-  m_sharedMaterial: {fileID: -1683991940141803040, guid: cab96b243ebb50f4cb4c6a1ef8a10a28, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e1793236a8deeb48a96bc418d2803aa, type: 2}
+  m_sharedMaterial: {fileID: 4747057843610481463, guid: 5e1793236a8deeb48a96bc418d2803aa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprint_speed_multiplier: 3
   sneak_speed_multiplier: 0.25
-  movement_speed: 900
+  movement_speed: 1100
   rotation_speed: 2000
   jump_force: 6
   ground_check_radius: 0.1

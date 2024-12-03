@@ -39,10 +39,6 @@ public class Projectile : MonoBehaviour
             other.GetComponent<PlayerHealth>().takeDamageOrHeal(damage);
             Destroy(gameObject);
         }
-        else if (other.tag == "Obstacle")
-        {
-            Destroy(gameObject);
-        }
     }
 
     public float getSpeed()

@@ -60,7 +60,7 @@ public class ChatController : MonoBehaviour
         {
             switch (message)
             {
-                case "!vote ice_cavern":
+                case "!vote ice-cavern":
                     {
                         vote_controller.vote(VoteOption.ICE_CAVERN);
                         new_message.text_object.color = new Color(0.0f, 1.0f, 1.0f);
