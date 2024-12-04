@@ -27,7 +27,7 @@ public class PlayerCoins : MonoBehaviour
 
         coins_text.text = "Coins: " + coin_count.ToString();
 
-        GetComponent<AudioSource>().PlayOneShot(coin_collect_sound);
+        GetComponent<AudioSource>().PlayOneShot(coin_collect_sound, 0.5f);
     }
 
     public void resetCoins()

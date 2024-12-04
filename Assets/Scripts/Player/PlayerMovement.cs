@@ -11,8 +11,9 @@ public class PlayerMovement : MonoBehaviour
     float accelerating_timer = 0.0f;
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
+    float air_speed_multiplier = 1.0f;
 
-    Vector3 velocity;
+    Vector3 move_force;
 
     Rigidbody rb;
 
@@ -21,10 +22,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float start_external_speed_multiplier;
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
-    [SerializeField] float movement_speed;
+    [SerializeField] float movement_force;
     [SerializeField] float rotation_speed;
     [SerializeField] float jump_force;
     [SerializeField] float ground_check_radius;
+    [SerializeField] float ground_drag;
+    [SerializeField] float air_drag;
+    [SerializeField] float air_speed_multiplier_air_value;
+    [SerializeField] float max_speed;
 
     [SerializeField] Transform ground_check_transform;
     [SerializeField] Transform camera_transform;
@@ -76,6 +81,17 @@ public class PlayerMovement : MonoBehaviour
         //check if grounded before checking jump input
         is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
 
+        if (is_grounded)
+        {
+            rb.drag = ground_drag;
+            air_speed_multiplier = 1.0f;
+        }
+        else
+        {
+            rb.drag = air_drag;
+            air_speed_multiplier = air_speed_multiplier_air_value;
+        }
+
         //jump
         if (Input.GetButtonDown("Jump") && is_grounded)
         {
@@ -84,14 +100,24 @@ public class PlayerMovement : MonoBehaviour
 
         //apply movement inputs
         //calculate movement magnitude
-        velocity.x = horizontal_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
-        velocity.z = vertical_input * movement_speed * internal_speed_multiplier * external_speed_multiplier * Time.deltaTime;
+        move_force.x = horizontal_input * movement_force * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier * Time.deltaTime;
+        move_force.z = vertical_input * movement_force * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier * Time.deltaTime;
 
         //calculate movement direction
-        velocity = transform.TransformDirection(velocity);
+        move_force = transform.TransformDirection(move_force);
 
-        //apply calculated movement to rigidbody velocity (retain y velocity since that is handled by jumping/falling)
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+        rb.AddForce(move_force, ForceMode.Force);
+
+        //check speed hasn't exceeded maximum
+        Vector3 flat_velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
+
+        if (flat_velocity.magnitude > max_speed)
+        {
+            Vector3 limited_velocity = flat_velocity.normalized * max_speed;
+            rb.velocity = new Vector3(limited_velocity.x, rb.velocity.y, limited_velocity.z);
+        }
+
+        Debug.Log(flat_velocity.magnitude);
     }
 
     void updateMoveAudio()

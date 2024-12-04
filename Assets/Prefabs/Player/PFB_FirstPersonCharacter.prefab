@@ -600,10 +600,14 @@ MonoBehaviour:
   start_external_speed_multiplier: 1
   sprint_speed_multiplier: 3
   sneak_speed_multiplier: 0.25
-  movement_speed: 1100
+  movement_force: 1000
   rotation_speed: 2000
   jump_force: 6
   ground_check_radius: 0.1
+  ground_drag: 5
+  air_drag: 1
+  air_speed_multiplier_air_value: 0.5
+  max_speed: 10
   ground_check_transform: {fileID: 4397553999885078620}
   camera_transform: {fileID: 8085304698619219912}
   jump_sound: {fileID: 8300000, guid: 465ca4794cc6ff94a98d5e73d38aca44, type: 3}
@@ -746,7 +750,7 @@ Rigidbody:
   m_GameObject: {fileID: 3935131353371124381}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 9999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
