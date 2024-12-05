@@ -7,28 +7,27 @@ public class PlayerMovement : MonoBehaviour
 {
     bool is_grounded;
 
-    float camera_pitch = 0.0f;
     float accelerating_timer = 0.0f;
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
     float air_speed_multiplier = 1.0f;
 
-    Vector3 move_force;
-
     Rigidbody rb;
 
     MoveAudioState move_audio_state;
 
+    [SerializeField] float acceleration;
+    [SerializeField] float jump_force;
+    [SerializeField] float max_speed;
+
     [SerializeField] float start_external_speed_multiplier;
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
-    [SerializeField] float movement_force;
-    [SerializeField] float jump_force;
+
     [SerializeField] float ground_check_radius;
     [SerializeField] float ground_drag;
     [SerializeField] float air_drag;
     [SerializeField] float air_speed_multiplier_air_value;
-    [SerializeField] float max_speed;
 
     [SerializeField] Transform ground_check_transform;
     [SerializeField] Transform camera_transform;
@@ -49,11 +48,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movePlayer();
         updateMoveAudio();
-        rotatePlayerAndCamera();
         updateTimers();
         checkRespawn();
+    }
+
+    private void FixedUpdate()
+    {
+        movePlayer();
     }
 
     void movePlayer()
@@ -98,12 +100,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //apply movement inputs
-        //calculate movement magnitude
-        move_force.x = horizontal_input * movement_force * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier * Time.deltaTime;
-        move_force.z = vertical_input * movement_force * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier * Time.deltaTime;
-
-        //calculate movement direction
-        move_force = transform.TransformDirection(move_force);
+        //calculate movement force
+        Vector3 move_direction = transform.forward * vertical_input + transform.right * horizontal_input;
+        Vector3 move_force = move_direction.normalized * acceleration * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier;
 
         rb.AddForce(move_force, ForceMode.Force);
 
@@ -159,24 +158,6 @@ public class PlayerMovement : MonoBehaviour
         {
             audio_source.Play();
         }
-    }
-
-    void rotatePlayerAndCamera()
-    {
-        //get rotation input
-        float x_rotation_input = Input.GetAxis("Mouse X");
-        float y_rotation_input = Input.GetAxis("Mouse Y");
-
-        if (camera_pitch > 90.0f)
-        {
-            camera_pitch = 90.0f;
-        }
-        else if (camera_pitch < -90.0f)
-        {
-            camera_pitch = -90.0f;
-        }
-        
-        camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
 
     void updateTimers()

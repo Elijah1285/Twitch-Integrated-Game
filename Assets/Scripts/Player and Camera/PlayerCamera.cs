@@ -7,8 +7,8 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float x_sensitivity;
     [SerializeField] float y_sensitivity;
 
-    [SerializeField] Transform orientation;
-    [SerializeField] Transform camera_position;
+    [SerializeField] Transform player_transform;
+    [SerializeField] Transform target_position;
 
     float x_rotation;
     float y_rotation;
@@ -26,9 +26,9 @@ public class PlayerCamera : MonoBehaviour
 
         //rotate camera and player orientation
         transform.rotation = Quaternion.Euler(x_rotation, y_rotation, 0.0f);
-        orientation.rotation = Quaternion.Euler(0.0f, y_rotation, 0.0f);
+        player_transform.rotation = Quaternion.Euler(0.0f, y_rotation, 0.0f);
 
         //set camera position
-        transform.position = camera_position.position;
+        transform.position = target_position.position;
     }
 }
