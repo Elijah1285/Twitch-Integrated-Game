@@ -94,19 +94,19 @@ public class PlayerMovement : MonoBehaviour
         //sprint/sneak
         if (Input.GetButton("Sprint") && is_grounded)
         {
-            internal_speed_multiplier = sprint_speed_multiplier;
-            max_speed = base_max_speed * sprint_speed_multiplier;
+            internal_speed_multiplier = sprint_speed_multiplier;           
         }
         else if (Input.GetButton("Sneak") && is_grounded)
         {
             internal_speed_multiplier = sneak_speed_multiplier;
-            max_speed = base_max_speed * sneak_speed_multiplier;
         }
         else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
         {
             internal_speed_multiplier = 1.0f;
-            max_speed = base_max_speed;
         }
+
+        //set max speed
+        max_speed = base_max_speed * internal_speed_multiplier * external_speed_multiplier;
 
         //apply movement inputs
         //calculate movement force
@@ -209,9 +209,9 @@ public class PlayerMovement : MonoBehaviour
         audio_source.PlayOneShot(jump_pad_sound);
     }
 
-    public void setExternalSpeedMultiplier(float new_slow_down_multiplier)
+    public void setExternalSpeedMultiplier(float new_external_speed_multiplier)
     {
-        external_speed_multiplier = new_slow_down_multiplier;
+        external_speed_multiplier = new_external_speed_multiplier;
     }
 
     enum MoveAudioState

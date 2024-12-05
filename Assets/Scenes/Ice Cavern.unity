@@ -10196,7 +10196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4728325689287285167, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: external_speed_multiplier
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6230944796676488907, guid: 4c60d26e1cc785246a4c5a4ed5d1d9e1, type: 3}
       propertyPath: m_Name
