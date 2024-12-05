@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour
     List<GameObject> enemies_in_attack_box = new List<GameObject>();
 
     [SerializeField] float time_for_attack;
-    [SerializeField] float attack_range;
     [SerializeField] int attack_damage;
 
     [SerializeField] SwordSwing sword_swing;

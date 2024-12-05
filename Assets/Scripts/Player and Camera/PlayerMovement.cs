@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
     [SerializeField] float movement_force;
-    [SerializeField] float rotation_speed;
     [SerializeField] float jump_force;
     [SerializeField] float ground_check_radius;
     [SerializeField] float ground_drag;
@@ -168,12 +167,6 @@ public class PlayerMovement : MonoBehaviour
         float x_rotation_input = Input.GetAxis("Mouse X");
         float y_rotation_input = Input.GetAxis("Mouse Y");
 
-        //apply rotation input
-        Quaternion target_player_rotation = transform.rotation * Quaternion.Euler(0.0f, x_rotation_input * rotation_speed * Time.deltaTime, 0.0f);
-
-        float target_camera_pitch = camera_pitch + (-y_rotation_input * rotation_speed * Time.deltaTime);
-        camera_pitch = Mathf.Lerp(camera_pitch, target_camera_pitch, Time.deltaTime * rotation_speed);
-
         if (camera_pitch > 90.0f)
         {
             camera_pitch = 90.0f;
@@ -182,9 +175,6 @@ public class PlayerMovement : MonoBehaviour
         {
             camera_pitch = -90.0f;
         }
-
-        //apply calculated rotation
-        rb.MoveRotation(Quaternion.Slerp(transform.rotation, target_player_rotation, Time.deltaTime * rotation_speed));
         
         camera_transform.localRotation = Quaternion.Euler(camera_pitch, 0.0f, 0.0f);
     }
