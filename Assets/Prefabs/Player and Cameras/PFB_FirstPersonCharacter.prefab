@@ -48,7 +48,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3935131353371124381}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 60108f0d6e8cd6c469da304ea82be7dc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -129,15 +129,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 100
-  jump_force: 10
-  max_speed: 10
+  jump_force: 8
+  base_max_speed: 2.5
   start_external_speed_multiplier: 1
-  sprint_speed_multiplier: 3
-  sneak_speed_multiplier: 0.25
+  sprint_speed_multiplier: 2
+  sneak_speed_multiplier: 0.5
   ground_check_radius: 0.1
   ground_drag: 5
-  air_drag: 0
-  air_speed_multiplier_air_value: 0.5
+  air_drag: 0.5
+  air_speed_multiplier_air_value: 0.25
   ground_check_transform: {fileID: 4397553999885078620}
   camera_transform: {fileID: 8085304698619219912}
   jump_sound: {fileID: 8300000, guid: 465ca4794cc6ff94a98d5e73d38aca44, type: 3}

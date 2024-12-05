@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
     float air_speed_multiplier = 1.0f;
+    float max_speed;
 
     Rigidbody rb;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float acceleration;
     [SerializeField] float jump_force;
-    [SerializeField] float max_speed;
+    [SerializeField] float base_max_speed;
 
     [SerializeField] float start_external_speed_multiplier;
     [SerializeField] float sprint_speed_multiplier;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        max_speed = base_max_speed;
         rb = GetComponent<Rigidbody>();
 
         GetComponent<PlayerHealth>().setCurrentCheckpointExternalSpeedMultiplier(start_external_speed_multiplier);
@@ -48,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        jumpAndAirCheck();
         updateMoveAudio();
         updateTimers();
         checkRespawn();
@@ -58,27 +61,8 @@ public class PlayerMovement : MonoBehaviour
         movePlayer();
     }
 
-    void movePlayer()
+    void jumpAndAirCheck()
     {
-        //get movement inputs
-        //axis
-        float horizontal_input = Input.GetAxis("Horizontal");
-        float vertical_input = Input.GetAxis("Vertical");
-
-        //sprint/sneak
-        if (Input.GetButton("Sprint") && is_grounded)
-        {
-            internal_speed_multiplier = sprint_speed_multiplier;
-        }
-        else if (Input.GetButton("Sneak") && is_grounded)
-        {
-            internal_speed_multiplier = sneak_speed_multiplier;
-        }
-        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
-        {
-            internal_speed_multiplier = 1.0f;
-        }
-
         //check if grounded before checking jump input
         is_grounded = Physics.CheckSphere(ground_check_transform.position, ground_check_radius, LayerMask.GetMask("Ground"));
 
@@ -98,6 +82,31 @@ public class PlayerMovement : MonoBehaviour
         {
             jump();
         }
+    }
+
+    void movePlayer()
+    {
+        //get movement inputs
+        //axis
+        float horizontal_input = Input.GetAxis("Horizontal");
+        float vertical_input = Input.GetAxis("Vertical");
+
+        //sprint/sneak
+        if (Input.GetButton("Sprint") && is_grounded)
+        {
+            internal_speed_multiplier = sprint_speed_multiplier;
+            max_speed = base_max_speed * sprint_speed_multiplier;
+        }
+        else if (Input.GetButton("Sneak") && is_grounded)
+        {
+            internal_speed_multiplier = sneak_speed_multiplier;
+            max_speed = base_max_speed * sneak_speed_multiplier;
+        }
+        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
+        {
+            internal_speed_multiplier = 1.0f;
+            max_speed = base_max_speed;
+        }
 
         //apply movement inputs
         //calculate movement force
@@ -114,8 +123,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limited_velocity = flat_velocity.normalized * max_speed;
             rb.velocity = new Vector3(limited_velocity.x, rb.velocity.y, limited_velocity.z);
         }
-
-        Debug.Log(flat_velocity.magnitude);
     }
 
     void updateMoveAudio()
