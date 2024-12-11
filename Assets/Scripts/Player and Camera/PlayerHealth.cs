@@ -56,11 +56,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void respawn()
     {
+        GetComponent<PlayerMovement>().respawnMoveTimer();
         GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         GetComponent<Rigidbody>().position = current_checkpoint;
         hitpoints = max_hitpoints;
         hitpoints_text.text = "HP: " + hitpoints.ToString();
-        GetComponent<PlayerMovement>().setExternalSpeedMultiplier(current_checkpoint_external_speed_multiplier);
+        GetComponent<PlayerMovement>().setExternalSpeedMultiplier(current_checkpoint_external_speed_multiplier);       
         GetComponent<PlayerCoins>().resetCoins();
     }
 }

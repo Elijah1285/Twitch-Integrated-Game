@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     float internal_speed_multiplier = 1.0f;
     float external_speed_multiplier = 1.0f;
     float air_speed_multiplier = 1.0f;
+    float respawn_move_timer = 0.0f;
     float max_speed;
 
     Rigidbody rb;
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float ground_drag;
     [SerializeField] float air_drag;
     [SerializeField] float air_speed_multiplier_air_value;
+
+    [SerializeField] float respawn_move_cooldown;
 
     [SerializeField] Transform ground_check_transform;
     [SerializeField] Transform camera_transform;
@@ -85,42 +88,46 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        //get movement inputs
-        //axis
-        float horizontal_input = Input.GetAxis("Horizontal");
-        float vertical_input = Input.GetAxis("Vertical");
-
-        //sprint/sneak
-        if (Input.GetButton("Sprint") && is_grounded)
+        if (respawn_move_timer <= 0.0f)
         {
-            internal_speed_multiplier = sprint_speed_multiplier;           
-        }
-        else if (Input.GetButton("Sneak") && is_grounded)
-        {
-            internal_speed_multiplier = sneak_speed_multiplier;
-        }
-        else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
-        {
-            internal_speed_multiplier = 1.0f;
-        }
+            //get movement inputs
+            //axis
+            float horizontal_input = Input.GetAxis("Horizontal");
+            float vertical_input = Input.GetAxis("Vertical");
 
-        //set max speed
-        max_speed = base_max_speed * internal_speed_multiplier * external_speed_multiplier;
+            //sprint/sneak
+            if (Input.GetButton("Sprint") && is_grounded)
+            {
+                internal_speed_multiplier = sprint_speed_multiplier;
+            }
+            else if (Input.GetButton("Sneak") && is_grounded)
+            {
+                internal_speed_multiplier = sneak_speed_multiplier;
+            }
+            else if (!Input.GetButton("Sprint") && !Input.GetButton("Sneak") && is_grounded && accelerating_timer <= 0.0f)
+            {
+                internal_speed_multiplier = 1.0f;
+            }
 
-        //apply movement inputs
-        //calculate movement force
-        Vector3 move_direction = transform.forward * vertical_input + transform.right * horizontal_input;
-        Vector3 move_force = move_direction.normalized * acceleration * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier;
+            //set max speed
+            max_speed = base_max_speed * internal_speed_multiplier * external_speed_multiplier;
 
-        rb.AddForce(move_force, ForceMode.Force);
+            //calculate movement force based on input and speed multipliers
 
-        //check speed hasn't exceeded maximum
-        Vector3 flat_velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
+            Vector3 move_direction = transform.forward * vertical_input + transform.right * horizontal_input;
+            Vector3 move_force = move_direction.normalized * acceleration * internal_speed_multiplier * external_speed_multiplier * air_speed_multiplier;
 
-        if (flat_velocity.magnitude > max_speed)
-        {
-            Vector3 limited_velocity = flat_velocity.normalized * max_speed;
-            rb.velocity = new Vector3(limited_velocity.x, rb.velocity.y, limited_velocity.z);
+            rb.AddForce(move_force, ForceMode.Force);
+
+
+            //check speed hasn't exceeded maximum
+            Vector3 flat_velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
+
+            if (flat_velocity.magnitude > max_speed)
+            {
+                Vector3 limited_velocity = flat_velocity.normalized * max_speed;
+                rb.velocity = new Vector3(limited_velocity.x, rb.velocity.y, limited_velocity.z);
+            }
         }
     }
 
@@ -172,6 +179,11 @@ public class PlayerMovement : MonoBehaviour
         {
             accelerating_timer -= Time.deltaTime;
         }
+
+        if (respawn_move_timer > 0.0f)
+        {
+            respawn_move_timer -= Time.deltaTime;
+        }
     }
 
     void checkRespawn()
@@ -206,6 +218,11 @@ public class PlayerMovement : MonoBehaviour
 
         //play jump pad sound
         audio_source.PlayOneShot(jump_pad_sound);
+    }
+
+    public void respawnMoveTimer()
+    {
+        respawn_move_timer = respawn_move_cooldown;
     }
 
     public void setExternalSpeedMultiplier(float new_external_speed_multiplier)
