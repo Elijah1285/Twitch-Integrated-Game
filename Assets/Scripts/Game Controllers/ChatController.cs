@@ -64,6 +64,7 @@ public class ChatController : MonoBehaviour
                     {
                         vote_controller.vote(VoteOption.ICE_CAVERN);
                         new_message.text_object.color = new Color(0.0f, 1.0f, 1.0f);
+                        users_voted.Add(chatter);
 
                         break;
                     }
@@ -72,12 +73,11 @@ public class ChatController : MonoBehaviour
                     {
                         vote_controller.vote(VoteOption.UNDERWORLD);
                         new_message.text_object.color = new Color(1.0f, 0.55f, 0.0f);
+                        users_voted.Add(chatter);
 
                         break;
                     }
             }
-
-            users_voted.Add(chatter);
         }
 
         //scroll to the bottom
