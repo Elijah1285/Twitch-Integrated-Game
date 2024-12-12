@@ -19,7 +19,7 @@ public class PlayerCoins : MonoBehaviour
     {
         coin_count++;
 
-        if (coin_count >= 20)
+        if (coin_count >= 10)
         {
             GetComponent<PlayerHealth>().takeDamageOrHeal(-5);
             coin_count = 0;

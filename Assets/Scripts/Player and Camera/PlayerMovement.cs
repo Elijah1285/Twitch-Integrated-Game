@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float external_speed_multiplier = 1.0f;
     float air_speed_multiplier = 1.0f;
     float respawn_move_timer = 0.0f;
+    float jump_timer = 0.0f;
     float max_speed;
 
     Rigidbody rb;
@@ -24,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float start_external_speed_multiplier;
     [SerializeField] float sprint_speed_multiplier;
     [SerializeField] float sneak_speed_multiplier;
+
+    [SerializeField] float jump_cooldown;
 
     [SerializeField] float ground_check_radius;
     [SerializeField] float ground_drag;
@@ -80,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jump
-        if (Input.GetButtonDown("Jump") && is_grounded)
+        if (Input.GetButtonDown("Jump") && is_grounded && jump_timer <= 0.0f)
         {
             jump();
         }
@@ -184,6 +187,11 @@ public class PlayerMovement : MonoBehaviour
         {
             respawn_move_timer -= Time.deltaTime;
         }
+
+        if (jump_timer > 0.0f)
+        {
+            jump_timer -= Time.deltaTime;
+        }
     }
 
     void checkRespawn()
@@ -197,11 +205,13 @@ public class PlayerMovement : MonoBehaviour
     void jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
-
         rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
 
         //play jump sound
         audio_source.PlayOneShot(jump_sound);
+
+        //set jump timer
+        jump_timer = jump_cooldown;
     }
 
     public void padJump(float override_jump_force, bool accelerate)
