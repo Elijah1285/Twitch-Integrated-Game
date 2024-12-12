@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349.3334
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 150}
   m_MaxSize: {x: 32384, y: 24288}
   vertical: 0
-  controlID: 154
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 150}
   m_MaxSize: {x: 24288, y: 24288}
   vertical: 1
-  controlID: 50
+  controlID: 60
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 51
+  controlID: 61
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,8 +244,8 @@ MonoBehaviour:
     y: 0
     width: 1066.6666
     height: 774
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -325,8 +325,8 @@ MonoBehaviour:
     y: 0
     width: 402.66675
     height: 1299.3334
-  m_MinSize: {x: 276, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -474,7 +474,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1466c7ff6a66c7ff0a68c7ff1268c7ffd66cc7ff209fc7ff9ab9c7ffb0b9c7ff14f5c7ff92fac7ff5e00c8ffb400c8ff7002c8ff8002c8ff4c07c8ff9e39c8ff2054c8ff3e54c8fffee1cdff6e77dfff14a7dfff48bedfff9ebedfff3ec0dfff46c0dfff0ac5dfff54f7dfffce11e0ffe411e0ffae1ee0ff441bffff1a81ffff2c87ffff0a94ffff4aa4ffffa0a4ffff40a6ffff48a6ffff14abffff84ddfffffaf7ffff10f8ffff1cfaffff9c9400002e95000092960000bc4e0100c0510100a26d0400ca660800
+      m_ExpandedIDs: ecfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 142.02254, y: -29.845213, z: 1.2528443}
     speed: 2
-    m_Value: {x: 3.3030477, y: -0.9573433, z: 0.5650994}
+    m_Value: {x: 142.02254, y: -29.845213, z: 1.2528443}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1044,11 +1044,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.09102254, y: -0.71354645, z: 0.06901122, w: -0.6958719}
     speed: 2
-    m_Value: {x: 0.11040012, y: -0.7999946, z: 0.1602158, w: 0.56758386}
+    m_Value: {x: -0.09073114, y: -0.71126205, z: 0.06879028, w: -0.6936441}
   m_Size:
     m_Target: 70.72664
     speed: 2
-    m_Value: 0.75737065
+    m_Value: 70.72664
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/Player and Camera
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1244,16 +1244,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/Player and Camera
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\Twitch-Integrated-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 28790000
-    m_LastClickedID: 31016
-    m_ExpandedIDs: 0000000028790000987900009c79000000ca9a3b
+    scrollPos: {x: 0, y: 93}
+    m_SelectedIDs: a4820000
+    m_LastClickedID: 33444
+    m_ExpandedIDs: 00000000148200009082000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000028790000
+    m_ExpandedIDs: 0000000014820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1314,18 +1314,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000cc82000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PFB_FirstPersonCharacter
-      m_OriginalName: PFB_FirstPersonCharacter
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 32262
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 11}
