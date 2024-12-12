@@ -17,6 +17,12 @@ public class VoteController : MonoBehaviour
 
     [SerializeField] AudioClip vote_sound;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     void Update()
     {
         vote_timer -= Time.deltaTime;
