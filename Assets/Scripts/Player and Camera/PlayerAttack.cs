@@ -10,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float time_for_attack;
     [SerializeField] int attack_damage;
 
+    [SerializeField] AudioClip sword_swing_sound;
+
     [SerializeField] SwordSwing sword_swing;
 
     void Start()
@@ -59,6 +61,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         sword_swing.swing();
+        GetComponent<AudioSource>().PlayOneShot(sword_swing_sound);
     }
 
     public void removeEnemy(GameObject enemy)
