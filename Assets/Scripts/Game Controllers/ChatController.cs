@@ -95,10 +95,5 @@ public class Message
 {
     public string text;
     public TextMeshProUGUI text_object;
-
-    public enum MessageType
-    {
-         
-    }
 }
 
